@@ -11,7 +11,7 @@ namespace wp_hw06_4105056005 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// startForm ªººK­n
+	/// startForm çš„æ‘˜è¦
 	/// </summary>
 	public ref class startForm : public System::Windows::Forms::Form
 	{
@@ -20,13 +20,13 @@ namespace wp_hw06_4105056005 {
 		{
 			InitializeComponent();
 			//
-			//TODO:  ¦b¦¹¥[¤J«Øºc¨ç¦¡µ{¦¡½X
+			//TODO:  åœ¨æ­¤åŠ å…¥å»ºæ§‹å‡½å¼ç¨‹å¼ç¢¼
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// ²M°£¥ô¦ó¨Ï¥Î¤¤ªº¸ê·½¡C
+		/// æ¸…é™¤ä»»ä½•ä½¿ç”¨ä¸­çš„è³‡æºã€‚
 		/// </summary>
 		~startForm()
 		{
@@ -48,6 +48,10 @@ namespace wp_hw06_4105056005 {
 	private: System::Windows::Forms::Label^  label_money;
 	private: System::Windows::Forms::TextBox^  textBox_money;
 	private: System::Windows::Forms::Button^  button_back;
+	private: System::Windows::Forms::Label^  continue_background;
+	private: System::Windows::Forms::ListBox^  listBox1;
+	private: System::Windows::Forms::Button^  button_load;
+
 
 
 
@@ -63,14 +67,14 @@ namespace wp_hw06_4105056005 {
 
 	private:
 		/// <summary>
-		/// ³]­p¤u¨ã©Ò»İªºÅÜ¼Æ¡C
+		/// è¨­è¨ˆå·¥å…·æ‰€éœ€çš„è®Šæ•¸ã€‚
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// ¦¹¬°³]­p¤u¨ã¤ä´©©Ò»İªº¤èªk - ½Ğ¤Å¨Ï¥Îµ{¦¡½X½s¿è¾¹­×§ï
-		/// ³o­Ó¤èªkªº¤º®e¡C
+		/// æ­¤ç‚ºè¨­è¨ˆå·¥å…·æ”¯æ´æ‰€éœ€çš„æ–¹æ³• - è«‹å‹¿ä½¿ç”¨ç¨‹å¼ç¢¼ç·¨è¼¯å™¨ä¿®æ”¹
+		/// é€™å€‹æ–¹æ³•çš„å…§å®¹ã€‚
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -87,6 +91,9 @@ namespace wp_hw06_4105056005 {
 			this->label_money = (gcnew System::Windows::Forms::Label());
 			this->textBox_money = (gcnew System::Windows::Forms::TextBox());
 			this->button_back = (gcnew System::Windows::Forms::Button());
+			this->continue_background = (gcnew System::Windows::Forms::Label());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->button_load = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -95,7 +102,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->button1->BackColor = System::Drawing::Color::SeaGreen;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button1->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button1->Location = System::Drawing::Point(326, 517);
@@ -103,15 +110,15 @@ namespace wp_hw06_4105056005 {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(222, 110);
 			this->button1->TabIndex = 0;
-			this->button1->Text = L"¶}©l·s«_ÀI";
+			this->button1->Text = L"é–‹å§‹æ–°å†’éšª";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &startForm::button1_Click);
 			// 
 			// trackBar1
 			// 
-			this->trackBar1->BackColor = System::Drawing::Color::LightSkyBlue;
+			this->trackBar1->BackColor = System::Drawing::Color::OliveDrab;
 			this->trackBar1->LargeChange = 1;
-			this->trackBar1->Location = System::Drawing::Point(383, 375);
+			this->trackBar1->Location = System::Drawing::Point(374, 349);
 			this->trackBar1->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->trackBar1->Maximum = 4;
 			this->trackBar1->Minimum = 2;
@@ -127,7 +134,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->button2->BackColor = System::Drawing::Color::SeaGreen;
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button2->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button2->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button2->Location = System::Drawing::Point(326, 718);
@@ -135,8 +142,9 @@ namespace wp_hw06_4105056005 {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(222, 110);
 			this->button2->TabIndex = 2;
-			this->button2->Text = L"Ä~Äò¹CÀ¸";
+			this->button2->Text = L"ç¹¼çºŒéŠæˆ²";
 			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &startForm::button2_Click);
 			// 
 			// pictureBox1
 			// 
@@ -154,15 +162,15 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->button3->BackColor = System::Drawing::Color::SeaGreen;
 			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button3->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button3->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button3->Location = System::Drawing::Point(619, 828);
+			this->button3->Location = System::Drawing::Point(623, 819);
 			this->button3->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(222, 110);
+			this->button3->Size = System::Drawing::Size(205, 91);
 			this->button3->TabIndex = 4;
-			this->button3->Text = L"«_ÀI¶}©l";
+			this->button3->Text = L"å†’éšªé–‹å§‹";
 			this->button3->UseVisualStyleBackColor = false;
 			this->button3->Visible = false;
 			this->button3->Click += gcnew System::EventHandler(this, &startForm::button3_Click);
@@ -183,29 +191,29 @@ namespace wp_hw06_4105056005 {
 			// 
 			// label_people
 			// 
-			this->label_people->BackColor = System::Drawing::Color::SteelBlue;
-			this->label_people->Font = (gcnew System::Drawing::Font(L"·s²Ó©úÅé", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_people->BackColor = System::Drawing::Color::DarkOliveGreen;
+			this->label_people->Font = (gcnew System::Drawing::Font(L"æ–°ç´°æ˜é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
-			this->label_people->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label_people->Location = System::Drawing::Point(133, 337);
+			this->label_people->ForeColor = System::Drawing::Color::White;
+			this->label_people->Location = System::Drawing::Point(136, 327);
 			this->label_people->Name = L"label_people";
-			this->label_people->Size = System::Drawing::Size(583, 160);
+			this->label_people->Size = System::Drawing::Size(583, 144);
 			this->label_people->TabIndex = 6;
-			this->label_people->Text = L"  ¹Cª±¤H¼Æ:  2";
+			this->label_people->Text = L"  éŠç©äººæ•¸:  2";
 			this->label_people->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->label_people->Visible = false;
 			// 
 			// label_name
 			// 
-			this->label_name->BackColor = System::Drawing::Color::SteelBlue;
-			this->label_name->Font = (gcnew System::Drawing::Font(L"·s²Ó©úÅé", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_name->BackColor = System::Drawing::Color::DarkOliveGreen;
+			this->label_name->Font = (gcnew System::Drawing::Font(L"æ–°ç´°æ˜é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
-			this->label_name->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label_name->Location = System::Drawing::Point(133, 110);
+			this->label_name->ForeColor = System::Drawing::Color::White;
+			this->label_name->Location = System::Drawing::Point(136, 127);
 			this->label_name->Name = L"label_name";
-			this->label_name->Size = System::Drawing::Size(583, 160);
+			this->label_name->Size = System::Drawing::Size(583, 140);
 			this->label_name->TabIndex = 7;
-			this->label_name->Text = L"  ª±®a­^¤å¦WºÙ:  \r\n  (11¦r¥H¤º)";
+			this->label_name->Text = L"  ç©å®¶è‹±æ–‡åç¨±:  \r\n  (11å­—ä»¥å…§)";
 			this->label_name->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->label_name->Visible = false;
 			// 
@@ -213,7 +221,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->textBox_name->Font = (gcnew System::Drawing::Font(L"Bahnschrift SemiCondensed", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox_name->Location = System::Drawing::Point(448, 165);
+			this->textBox_name->Location = System::Drawing::Point(451, 172);
 			this->textBox_name->MaxLength = 11;
 			this->textBox_name->Name = L"textBox_name";
 			this->textBox_name->Size = System::Drawing::Size(235, 46);
@@ -225,15 +233,15 @@ namespace wp_hw06_4105056005 {
 			// 
 			// label_money
 			// 
-			this->label_money->BackColor = System::Drawing::Color::SteelBlue;
-			this->label_money->Font = (gcnew System::Drawing::Font(L"·s²Ó©úÅé", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_money->BackColor = System::Drawing::Color::DarkOliveGreen;
+			this->label_money->Font = (gcnew System::Drawing::Font(L"æ–°ç´°æ˜é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
-			this->label_money->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label_money->Location = System::Drawing::Point(133, 555);
+			this->label_money->ForeColor = System::Drawing::Color::White;
+			this->label_money->Location = System::Drawing::Point(142, 532);
 			this->label_money->Name = L"label_money";
-			this->label_money->Size = System::Drawing::Size(583, 160);
+			this->label_money->Size = System::Drawing::Size(577, 141);
 			this->label_money->TabIndex = 9;
-			this->label_money->Text = L"  ªì©lª÷ÃB:  ";
+			this->label_money->Text = L"  åˆå§‹é‡‘é¡:  ";
 			this->label_money->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->label_money->Visible = false;
 			// 
@@ -241,10 +249,10 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->textBox_money->Font = (gcnew System::Drawing::Font(L"Bahnschrift SemiCondensed", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox_money->Location = System::Drawing::Point(448, 610);
+			this->textBox_money->Location = System::Drawing::Point(374, 578);
 			this->textBox_money->MaxLength = 10;
 			this->textBox_money->Name = L"textBox_money";
-			this->textBox_money->Size = System::Drawing::Size(235, 46);
+			this->textBox_money->Size = System::Drawing::Size(312, 46);
 			this->textBox_money->TabIndex = 10;
 			this->textBox_money->Text = L"1500";
 			this->textBox_money->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
@@ -254,18 +262,60 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->button_back->BackColor = System::Drawing::Color::SeaGreen;
 			this->button_back->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button_back->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_back->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_back->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button_back->Location = System::Drawing::Point(351, 828);
+			this->button_back->Location = System::Drawing::Point(43, 819);
 			this->button_back->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->button_back->Name = L"button_back";
-			this->button_back->Size = System::Drawing::Size(222, 110);
+			this->button_back->Size = System::Drawing::Size(186, 91);
 			this->button_back->TabIndex = 11;
-			this->button_back->Text = L"¤W¤@­¶";
+			this->button_back->Text = L"ä¸Šä¸€é ";
 			this->button_back->UseVisualStyleBackColor = false;
 			this->button_back->Visible = false;
 			this->button_back->Click += gcnew System::EventHandler(this, &startForm::button_back_Click);
+			// 
+			// continue_background
+			// 
+			this->continue_background->BackColor = System::Drawing::Color::DarkSeaGreen;
+			this->continue_background->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(136)));
+			this->continue_background->Location = System::Drawing::Point(70, 84);
+			this->continue_background->Name = L"continue_background";
+			this->continue_background->Size = System::Drawing::Size(723, 705);
+			this->continue_background->TabIndex = 12;
+			this->continue_background->Text = L"\r\né¸æ“‡ç´€éŒ„æª”:";
+			this->continue_background->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->continue_background->Visible = false;
+			// 
+			// listBox1
+			// 
+			this->listBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->listBox1->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(136)));
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->ItemHeight = 36;
+			this->listBox1->Location = System::Drawing::Point(168, 246);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(537, 326);
+			this->listBox1->TabIndex = 13;
+			this->listBox1->Visible = false;
+			// 
+			// button_load
+			// 
+			this->button_load->BackColor = System::Drawing::Color::SeaGreen;
+			this->button_load->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button_load->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(136)));
+			this->button_load->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button_load->Location = System::Drawing::Point(326, 646);
+			this->button_load->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->button_load->Name = L"button_load";
+			this->button_load->Size = System::Drawing::Size(205, 91);
+			this->button_load->TabIndex = 14;
+			this->button_load->Text = L"ç¢ºå®š";
+			this->button_load->UseVisualStyleBackColor = false;
+			this->button_load->Visible = false;
 			// 
 			// startForm
 			// 
@@ -276,6 +326,9 @@ namespace wp_hw06_4105056005 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(854, 979);
+			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->button_load);
+			this->Controls->Add(this->continue_background);
 			this->Controls->Add(this->button_back);
 			this->Controls->Add(this->textBox_money);
 			this->Controls->Add(this->label_money);
@@ -288,6 +341,7 @@ namespace wp_hw06_4105056005 {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label_people);
 			this->Controls->Add(this->pictureBox1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Name = L"startForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -299,7 +353,7 @@ namespace wp_hw06_4105056005 {
 
 		}
 #pragma endregion
-	//«ö¤U¶}©l·s«_ÀI«ö¶s
+	//æŒ‰ä¸‹é–‹å§‹æ–°å†’éšªæŒ‰éˆ•
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		button2->Visible = false;
 		button1->Visible = false;
@@ -314,9 +368,9 @@ namespace wp_hw06_4105056005 {
 		label_money->Visible = true;
 		button_back->Visible = true;
 	}
-	//«ö¤U«_ÀI¶}©l«ö¶s
+	//æŒ‰ä¸‹å†’éšªé–‹å§‹æŒ‰éˆ•
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-		//¦^¨ì¹w³]ª¬ºA
+		//å›åˆ°é è¨­ç‹€æ…‹
 		button2->Visible = true;
 		button1->Visible = true;
 		pictureBox1->Visible = true;
@@ -330,13 +384,13 @@ namespace wp_hw06_4105056005 {
 		label_money->Visible = false;
 		button_back->Visible = false;
 
-		//¶Ç°Ñ¼Æ¶i¥h¹CÀ¸form
+		//å‚³åƒæ•¸é€²å»éŠæˆ²form
 		MainForm^ mf = gcnew MainForm;
-		mf->people = trackBar1->Value;	//¤H¼Æ
+		mf->people = trackBar1->Value;	//äººæ•¸
 		mf->hidepeople();
-		mf->playerName[0] = textBox_name->Text;	//¦W¦r
+		mf->playerName[0] = textBox_name->Text;	//åå­—
 		int testInteger = 0;
-		if (Int32::TryParse(textBox_money->Text, testInteger)) {  //ª÷¿ú¼Æ¶q¨¾§b¡A¤£·|¬O¦r¥À©Î­t¼Æ
+		if (Int32::TryParse(textBox_money->Text, testInteger)) {  //é‡‘éŒ¢æ•¸é‡é˜²å‘†ï¼Œä¸æœƒæ˜¯å­—æ¯æˆ–è² æ•¸
 			if (testInteger <= 0)
 				mf->pmoney[0] = 1500;
 			else
@@ -351,16 +405,16 @@ namespace wp_hw06_4105056005 {
 		textBox_money->Text = "1500";
 		trackBar1->Value = 2;
 	}
-	//Åã¥Ü³]©w¤H¼Æ
+	//é¡¯ç¤ºè¨­å®šäººæ•¸
 	private: System::Void trackBar1_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		label_people->Text = "  ¹Cª±¤H¼Æ:  " + trackBar1->Value;
+		label_people->Text = "  éŠç©äººæ•¸:  " + trackBar1->Value;
 	}
-	//²M°£¹w³]¤H¦W
+	//æ¸…é™¤é è¨­äººå
 	private: System::Void textBox_name_Click(System::Object^  sender, System::EventArgs^  e) {
 		if(textBox_name->Text == "Frodo")
 			textBox_name->Text = "";
 	}
-	//¦^¨ì¤W¤@­¶(¥Dµe­±)
+	//å›åˆ°ä¸Šä¸€é (ä¸»ç•«é¢)
 	private: System::Void button_back_Click(System::Object^  sender, System::EventArgs^  e) {
 		button2->Visible = true;
 		button1->Visible = true;
@@ -374,6 +428,43 @@ namespace wp_hw06_4105056005 {
 		textBox_name->Visible = false;
 		label_money->Visible = false;
 		button_back->Visible = false;
+		button_load->Visible = false;
+		listBox1->Visible = false;
+		continue_background->Visible = false;
+		listBox1->Items->Clear();
+	}
+	//è®€æª”æŒ‰éˆ•
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		button2->Visible = false;
+		button1->Visible = false;
+		pictureBox1->Visible = false;
+		button_load->Visible = true;
+		listBox1->Visible = true;
+		continue_background->Visible = true;
+		button_back->Visible = true;
+		
+		int^ count = gcnew int;		//å¹¾å€‹ç´€éŒ„
+		array<String^>^ words;	//åˆ†å‰²å¥å­
+		int^ lines = gcnew int; //ä¸€å€‹ç´€éŒ„æœ‰åè¡Œæ–‡å­—ï¼Œä¸€è¡Œç©ºç™½
+		String^ str;
+
+		StreamReader^ sl = File::OpenText("Save.txt");
+		count = 0;
+		while ((str = sl->ReadLine()) != nullptr) {
+			if (String::Compare(str, "Save File:") == 0)
+				(*count)++;
+			if (str->StartsWith("Save time-")) {
+				words = str->Split('-');
+				listBox1->Items->Add(*count + "è™Ÿå­˜æª”: " + words[1]);
+			}
+		}
+		if (*count == 0) {
+			continue_background->Text += "\nç„¡ä»»ä½•å­˜æª”ç´€éŒ„";
+			button_load->Visible = false;
+		}
+		sl->Close();
+		
+
 	}
 };
 }
