@@ -3,6 +3,8 @@
 //www.flaticon.com/packs/fantastic-characters-3
 #include <time.h>
 #include <cstdlib>
+#include <iostream>
+#include <fstream>
 
 namespace wp_hw06_4105056005 {
 
@@ -12,9 +14,10 @@ namespace wp_hw06_4105056005 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
-	/// MainForm ªººK­n
+	/// MainForm çš„æ‘˜è¦
 	/// </summary>
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
@@ -23,30 +26,28 @@ namespace wp_hw06_4105056005 {
 		{
 			InitializeComponent();
 			//
-			//TODO:  ¦b¦¹¥[¤J«Øºc¨ç¦¡µ{¦¡½X
+			//TODO:  åœ¨æ­¤åŠ å…¥å»ºæ§‹å‡½å¼ç¨‹å¼ç¢¼
 			//
 		}
 
-	int people = 0;	//¹Cª±¤H¼Æ
-	array<int>^ pmoney = gcnew array<int>(4);		//ª±®a­Ìª÷¿ú¼Æ
-	array< String^ >^ plocations;					//¦U¦a¦WºÙ
-	array<int>^ plocaMon = gcnew array<int>(30);	//¦U¦a»ù¿ú
-	array<int>^ phouses = gcnew array<int>(30);		//¦U¦a©Ğ¤l¼Æ¶q
-	array<int>^ owner = gcnew array<int>(30);		//¦U¦a©Ğ¤l¾Ö¦³ªÌ¡A0¥NªíµL¤H¾Ö¦³¡A1¥Nªí1¸¹ª±®a
-	array<int>^ pposition = gcnew array<int>(4);	//ª±®a­Ì¦U¦Û©Ò¦b¦ì¸m
-	array<int>^ pnoTax = gcnew array<int>(4);		//¦Uª±®a¾Ö¦³ªº°kµ|¥d
-	array<int>^ alive = gcnew array<int>(4);		//ª±®a­Ì¬O§_¬¡µÛ¡A1¥Nªí¦º¤`
-	int^ pdice = gcnew int;		//»ë¤lÂI¼Æ
-	int^ pround = gcnew int;	//¥Ø«e½ü¨ìª±®a
-	int^ preturn = gcnew int;	//­«·s¶}©l
+	int people = 0;	//éŠç©äººæ•¸
+	array<int>^ pmoney = gcnew array<int>(4);		//ç©å®¶å€‘é‡‘éŒ¢æ•¸
+	array< String^ >^ plocations;					//å„åœ°åç¨±
+	array<int>^ plocaMon = gcnew array<int>(30);	//å„åœ°åƒ¹éŒ¢
+	array<int>^ phouses = gcnew array<int>(30);		//å„åœ°æˆ¿å­æ•¸é‡
+	array<int>^ owner = gcnew array<int>(30);		//å„åœ°æˆ¿å­æ“æœ‰è€…ï¼Œ0ä»£è¡¨ç„¡äººæ“æœ‰ï¼Œ1ä»£è¡¨1è™Ÿç©å®¶
+	array<int>^ pposition = gcnew array<int>(4);	//ç©å®¶å€‘å„è‡ªæ‰€åœ¨ä½ç½®
+	array<int>^ pnoTax = gcnew array<int>(4);		//å„ç©å®¶æ“æœ‰çš„é€ƒç¨…å¡
+	array<int>^ alive = gcnew array<int>(4);		//ç©å®¶å€‘æ˜¯å¦æ´»è‘—ï¼Œ1ä»£è¡¨æ­»äº¡
+	int^ pdice = gcnew int;		//éª°å­é»æ•¸
+	int^ pround = gcnew int;	//ç›®å‰è¼ªåˆ°ç©å®¶
 
 	private: System::Windows::Forms::Label^  label_p1_name;
 	private: System::Windows::Forms::Label^  label_p2_name;
-
 	private: System::Windows::Forms::Label^  label_p3_name;
 	private: System::Windows::Forms::Label^  label_p4_name;
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
-	private: System::Windows::Forms::ToolStripMenuItem^  ½Õ¾ã¼Ò¦¡ToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  èª¿æ•´æ¨¡å¼ToolStripMenuItem;
 	private: System::Windows::Forms::PictureBox^  pictureBox_gif;
 	private: System::Windows::Forms::Button^  button_dice;
 	private: System::Windows::Forms::Label^  label_showDice;
@@ -63,13 +64,24 @@ namespace wp_hw06_4105056005 {
 	private: System::Windows::Forms::PictureBox^  picture_avatar4;
 	private: System::Windows::Forms::Button^  button_continue;
 	private: System::Windows::Forms::Label^  label_who;
+	private: System::Windows::Forms::PictureBox^  pictureBox5;
+	private: System::Windows::Forms::PictureBox^  pictureBox6;
+	private: System::Windows::Forms::PictureBox^  pictureBox7;
+	private: System::Windows::Forms::PictureBox^  pictureBox8;
+	private: System::Windows::Forms::PictureBox^  pictureBox9;
+	private: System::Windows::Forms::Label^  label_p2_dead;
+	private: System::Windows::Forms::Label^  label_p3_dead;
+	private: System::Windows::Forms::Label^  label_p4_dead;
+	private: System::Windows::Forms::ToolStripMenuItem^  å­˜æª”ToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  èªªæ˜èˆ‡åœ–æºToolStripMenuItem;
+
 
 	public:
-		array<String^>^ playerName = gcnew array<String^>(4);	//ª±®a¦WºÙ
+		array<String^>^ playerName = gcnew array<String^>(4);	//ç©å®¶åç¨±
 
 	protected:
 		/// <summary>
-		/// ²M°£¥ô¦ó¨Ï¥Î¤¤ªº¸ê·½¡C
+		/// æ¸…é™¤ä»»ä½•ä½¿ç”¨ä¸­çš„è³‡æºã€‚
 		/// </summary>
 		~MainForm()
 		{
@@ -79,8 +91,6 @@ namespace wp_hw06_4105056005 {
 			}
 		}
 	private: System::Windows::Forms::Label^  label_start;
-	protected:
-
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
@@ -118,30 +128,17 @@ namespace wp_hw06_4105056005 {
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::PictureBox^  pictureBox3;
 	private: System::Windows::Forms::PictureBox^  pictureBox4;
-	protected:
-
-	protected:
-
-	protected:
-
-	protected:
-
-	protected:
-
-	protected:
-
-	protected:
-
+	
 	private:
 		/// <summary>
-		/// ³]­p¤u¨ã©Ò»İªºÅÜ¼Æ¡C
+		/// è¨­è¨ˆå·¥å…·æ‰€éœ€çš„è®Šæ•¸ã€‚
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// ¦¹¬°³]­p¤u¨ã¤ä´©©Ò»İªº¤èªk - ½Ğ¤Å¨Ï¥Îµ{¦¡½X½s¿è¾¹­×§ï
-		/// ³o­Ó¤èªkªº¤º®e¡C
+		/// æ­¤ç‚ºè¨­è¨ˆå·¥å…·æ”¯æ´æ‰€éœ€çš„æ–¹æ³• - è«‹å‹¿ä½¿ç”¨ç¨‹å¼ç¢¼ç·¨è¼¯å™¨ä¿®æ”¹
+		/// é€™å€‹æ–¹æ³•çš„å…§å®¹ã€‚
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -189,7 +186,8 @@ namespace wp_hw06_4105056005 {
 			this->label_p3_name = (gcnew System::Windows::Forms::Label());
 			this->label_p4_name = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
-			this->½Õ¾ã¼Ò¦¡ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->èª¿æ•´æ¨¡å¼ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->å­˜æª”ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->pictureBox_gif = (gcnew System::Windows::Forms::PictureBox());
 			this->button_dice = (gcnew System::Windows::Forms::Button());
 			this->label_showDice = (gcnew System::Windows::Forms::Label());
@@ -206,6 +204,15 @@ namespace wp_hw06_4105056005 {
 			this->picture_avatar4 = (gcnew System::Windows::Forms::PictureBox());
 			this->button_continue = (gcnew System::Windows::Forms::Button());
 			this->label_who = (gcnew System::Windows::Forms::Label());
+			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox8 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox9 = (gcnew System::Windows::Forms::PictureBox());
+			this->label_p2_dead = (gcnew System::Windows::Forms::Label());
+			this->label_p3_dead = (gcnew System::Windows::Forms::Label());
+			this->label_p4_dead = (gcnew System::Windows::Forms::Label());
+			this->èªªæ˜èˆ‡åœ–æºToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -216,6 +223,11 @@ namespace wp_hw06_4105056005 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_avatar2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_avatar3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_avatar4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label_start
@@ -356,7 +368,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			// label10
 			// 
-			this->label10->BackColor = System::Drawing::Color::SlateBlue;
+			this->label10->BackColor = System::Drawing::Color::MediumPurple;
 			this->label10->Font = (gcnew System::Drawing::Font(L"Bahnschrift SemiCondensed", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label10->Location = System::Drawing::Point(2205, 253);
@@ -538,7 +550,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			// label25
 			// 
-			this->label25->BackColor = System::Drawing::Color::SlateBlue;
+			this->label25->BackColor = System::Drawing::Color::MediumPurple;
 			this->label25->Font = (gcnew System::Drawing::Font(L"Bahnschrift SemiCondensed", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label25->Location = System::Drawing::Point(45, 1028);
@@ -600,47 +612,47 @@ namespace wp_hw06_4105056005 {
 			// label_player1
 			// 
 			this->label_player1->BackColor = System::Drawing::Color::LightCoral;
-			this->label_player1->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_player1->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->label_player1->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->label_player1->Location = System::Drawing::Point(285, 321);
 			this->label_player1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_player1->Name = L"label_player1";
-			this->label_player1->Size = System::Drawing::Size(417, 292);
+			this->label_player1->Size = System::Drawing::Size(417, 240);
 			this->label_player1->TabIndex = 31;
 			// 
 			// label_player2
 			// 
 			this->label_player2->BackColor = System::Drawing::Color::SkyBlue;
-			this->label_player2->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_player2->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->label_player2->Location = System::Drawing::Point(1763, 321);
 			this->label_player2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_player2->Name = L"label_player2";
-			this->label_player2->Size = System::Drawing::Size(418, 292);
+			this->label_player2->Size = System::Drawing::Size(418, 240);
 			this->label_player2->TabIndex = 32;
 			this->label_player2->TextAlign = System::Drawing::ContentAlignment::TopRight;
 			// 
 			// label_player3
 			// 
 			this->label_player3->BackColor = System::Drawing::Color::DarkSeaGreen;
-			this->label_player3->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_player3->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
-			this->label_player3->Location = System::Drawing::Point(285, 901);
+			this->label_player3->Location = System::Drawing::Point(285, 953);
 			this->label_player3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_player3->Name = L"label_player3";
-			this->label_player3->Size = System::Drawing::Size(417, 292);
+			this->label_player3->Size = System::Drawing::Size(417, 240);
 			this->label_player3->TabIndex = 33;
 			// 
 			// label_player4
 			// 
 			this->label_player4->BackColor = System::Drawing::Color::BlanchedAlmond;
-			this->label_player4->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_player4->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
-			this->label_player4->Location = System::Drawing::Point(1763, 901);
+			this->label_player4->Location = System::Drawing::Point(1763, 953);
 			this->label_player4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_player4->Name = L"label_player4";
-			this->label_player4->Size = System::Drawing::Size(418, 292);
+			this->label_player4->Size = System::Drawing::Size(418, 240);
 			this->label_player4->TabIndex = 34;
 			this->label_player4->TextAlign = System::Drawing::ContentAlignment::TopRight;
 			// 
@@ -663,7 +675,7 @@ namespace wp_hw06_4105056005 {
 			this->pictureBox3->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.BackgroundImage")));
 			this->pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->pictureBox3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->pictureBox3->Location = System::Drawing::Point(576, 809);
+			this->pictureBox3->Location = System::Drawing::Point(576, 861);
 			this->pictureBox3->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->pictureBox3->Name = L"pictureBox3";
 			this->pictureBox3->Size = System::Drawing::Size(125, 125);
@@ -676,7 +688,7 @@ namespace wp_hw06_4105056005 {
 			this->pictureBox4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.BackgroundImage")));
 			this->pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->pictureBox4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->pictureBox4->Location = System::Drawing::Point(1763, 809);
+			this->pictureBox4->Location = System::Drawing::Point(1763, 861);
 			this->pictureBox4->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->pictureBox4->Name = L"pictureBox4";
 			this->pictureBox4->Size = System::Drawing::Size(125, 125);
@@ -707,7 +719,7 @@ namespace wp_hw06_4105056005 {
 			this->label_p2_name->Name = L"label_p2_name";
 			this->label_p2_name->Size = System::Drawing::Size(293, 68);
 			this->label_p2_name->TabIndex = 39;
-			this->label_p2_name->Text = L"Cyclops";
+			this->label_p2_name->Text = L"Wolverine";
 			this->label_p2_name->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// label_p3_name
@@ -715,7 +727,7 @@ namespace wp_hw06_4105056005 {
 			this->label_p3_name->BackColor = System::Drawing::Color::MediumSeaGreen;
 			this->label_p3_name->Font = (gcnew System::Drawing::Font(L"Bahnschrift", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label_p3_name->Location = System::Drawing::Point(283, 833);
+			this->label_p3_name->Location = System::Drawing::Point(283, 885);
 			this->label_p3_name->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_p3_name->Name = L"label_p3_name";
 			this->label_p3_name->Size = System::Drawing::Size(292, 68);
@@ -728,7 +740,7 @@ namespace wp_hw06_4105056005 {
 			this->label_p4_name->BackColor = System::Drawing::Color::Gold;
 			this->label_p4_name->Font = (gcnew System::Drawing::Font(L"Bahnschrift", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label_p4_name->Location = System::Drawing::Point(1889, 833);
+			this->label_p4_name->Location = System::Drawing::Point(1889, 885);
 			this->label_p4_name->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label_p4_name->Name = L"label_p4_name";
 			this->label_p4_name->Size = System::Drawing::Size(292, 68);
@@ -740,18 +752,28 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->menuStrip1->BackColor = System::Drawing::Color::LightSteelBlue;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(32, 32);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->½Õ¾ã¼Ò¦¡ToolStripMenuItem });
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->èª¿æ•´æ¨¡å¼ToolStripMenuItem,
+					this->å­˜æª”ToolStripMenuItem, this->èªªæ˜èˆ‡åœ–æºToolStripMenuItem
+			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(2506, 38);
+			this->menuStrip1->Size = System::Drawing::Size(2479, 38);
 			this->menuStrip1->TabIndex = 42;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
-			// ½Õ¾ã¼Ò¦¡ToolStripMenuItem
+			// èª¿æ•´æ¨¡å¼ToolStripMenuItem
 			// 
-			this->½Õ¾ã¼Ò¦¡ToolStripMenuItem->Name = L"½Õ¾ã¼Ò¦¡ToolStripMenuItem";
-			this->½Õ¾ã¼Ò¦¡ToolStripMenuItem->Size = System::Drawing::Size(121, 34);
-			this->½Õ¾ã¼Ò¦¡ToolStripMenuItem->Text = L"½Õ¾ã¼Ò¦¡";
+			this->èª¿æ•´æ¨¡å¼ToolStripMenuItem->Name = L"èª¿æ•´æ¨¡å¼ToolStripMenuItem";
+			this->èª¿æ•´æ¨¡å¼ToolStripMenuItem->Size = System::Drawing::Size(121, 34);
+			this->èª¿æ•´æ¨¡å¼ToolStripMenuItem->Text = L"ä½œå¼Šæ¨¡å¼";
+			// 
+			// å­˜æª”ToolStripMenuItem
+			// 
+			this->å­˜æª”ToolStripMenuItem->Name = L"å­˜æª”ToolStripMenuItem";
+			this->å­˜æª”ToolStripMenuItem->Size = System::Drawing::Size(73, 34);
+			this->å­˜æª”ToolStripMenuItem->Text = L"å­˜æª”";
+			this->å­˜æª”ToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::å­˜æª”ToolStripMenuItem_Click);
 			// 
 			// pictureBox_gif
 			// 
@@ -765,14 +787,14 @@ namespace wp_hw06_4105056005 {
 			// button_dice
 			// 
 			this->button_dice->BackColor = System::Drawing::Color::Sienna;
-			this->button_dice->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_dice->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_dice->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button_dice->Location = System::Drawing::Point(1122, 1046);
 			this->button_dice->Name = L"button_dice";
 			this->button_dice->Size = System::Drawing::Size(210, 85);
 			this->button_dice->TabIndex = 44;
-			this->button_dice->Text = L"ÂY»ë¤l";
+			this->button_dice->Text = L"æ“²éª°å­";
 			this->button_dice->UseVisualStyleBackColor = false;
 			this->button_dice->Click += gcnew System::EventHandler(this, &MainForm::button_dice_Click);
 			// 
@@ -780,13 +802,13 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->label_showDice->AutoSize = true;
 			this->label_showDice->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->label_showDice->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 13.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_showDice->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 13.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->label_showDice->Location = System::Drawing::Point(882, 403);
 			this->label_showDice->Name = L"label_showDice";
 			this->label_showDice->Size = System::Drawing::Size(306, 47);
 			this->label_showDice->TabIndex = 45;
-			this->label_showDice->Text = L"§AÂY¥XªºÂI¼Æ¬O...";
+			this->label_showDice->Text = L"ä½ æ“²å‡ºçš„é»æ•¸æ˜¯...";
 			this->label_showDice->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label_showDice->Visible = false;
 			// 
@@ -795,14 +817,14 @@ namespace wp_hw06_4105056005 {
 			this->label_showDice2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->label_showDice2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label_showDice2->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 31.875F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label_showDice2->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 31.875F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->label_showDice2->ForeColor = System::Drawing::Color::WhiteSmoke;
-			this->label_showDice2->Location = System::Drawing::Point(1204, 506);
+			this->label_showDice2->Location = System::Drawing::Point(1135, 506);
 			this->label_showDice2->Name = L"label_showDice2";
 			this->label_showDice2->Size = System::Drawing::Size(277, 107);
 			this->label_showDice2->TabIndex = 46;
-			this->label_showDice2->Text = L"0 ÂI";
+			this->label_showDice2->Text = L"0 é»";
 			this->label_showDice2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label_showDice2->Visible = false;
 			// 
@@ -810,27 +832,27 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->label_toLocation->AutoSize = true;
 			this->label_toLocation->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->label_toLocation->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 13.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_toLocation->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 13.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->label_toLocation->Location = System::Drawing::Point(933, 699);
 			this->label_toLocation->Name = L"label_toLocation";
 			this->label_toLocation->Size = System::Drawing::Size(204, 47);
 			this->label_toLocation->TabIndex = 47;
-			this->label_toLocation->Text = L"«e©¹¦a°Ï....";
+			this->label_toLocation->Text = L"å‰å¾€åœ°å€....";
 			this->label_toLocation->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label_toLocation->Visible = false;
 			// 
 			// button_yes
 			// 
 			this->button_yes->BackColor = System::Drawing::Color::Sienna;
-			this->button_yes->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_yes->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_yes->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button_yes->Location = System::Drawing::Point(1122, 1046);
 			this->button_yes->Name = L"button_yes";
 			this->button_yes->Size = System::Drawing::Size(210, 85);
 			this->button_yes->TabIndex = 48;
-			this->button_yes->Text = L"½T»{";
+			this->button_yes->Text = L"ç¢ºèª";
 			this->button_yes->UseVisualStyleBackColor = false;
 			this->button_yes->Visible = false;
 			this->button_yes->Click += gcnew System::EventHandler(this, &MainForm::button_yes_Click);
@@ -838,28 +860,28 @@ namespace wp_hw06_4105056005 {
 			// label_showEvent
 			// 
 			this->label_showEvent->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->label_showEvent->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 13.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_showEvent->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 13.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->label_showEvent->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"label_showEvent.Image")));
-			this->label_showEvent->Location = System::Drawing::Point(837, 430);
+			this->label_showEvent->Location = System::Drawing::Point(842, 416);
 			this->label_showEvent->Name = L"label_showEvent";
 			this->label_showEvent->Size = System::Drawing::Size(796, 292);
 			this->label_showEvent->TabIndex = 49;
-			this->label_showEvent->Text = L"¶R©Ğ¤l";
+			this->label_showEvent->Text = L"è²·æˆ¿å­";
 			this->label_showEvent->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label_showEvent->Visible = false;
 			// 
 			// button_next
 			// 
 			this->button_next->BackColor = System::Drawing::Color::Sienna;
-			this->button_next->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_next->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_next->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button_next->Location = System::Drawing::Point(1437, 1046);
 			this->button_next->Name = L"button_next";
 			this->button_next->Size = System::Drawing::Size(229, 85);
 			this->button_next->TabIndex = 50;
-			this->button_next->Text = L"µ²§ô¦^¦X";
+			this->button_next->Text = L"çµæŸå›åˆ";
 			this->button_next->UseVisualStyleBackColor = false;
 			this->button_next->Visible = false;
 			this->button_next->Click += gcnew System::EventHandler(this, &MainForm::button_next_Click);
@@ -867,14 +889,14 @@ namespace wp_hw06_4105056005 {
 			// button_buy
 			// 
 			this->button_buy->BackColor = System::Drawing::Color::Sienna;
-			this->button_buy->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_buy->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_buy->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button_buy->Location = System::Drawing::Point(964, 869);
 			this->button_buy->Name = L"button_buy";
 			this->button_buy->Size = System::Drawing::Size(206, 85);
 			this->button_buy->TabIndex = 51;
-			this->button_buy->Text = L"ÁÊ¶R";
+			this->button_buy->Text = L"è³¼è²·";
 			this->button_buy->UseVisualStyleBackColor = false;
 			this->button_buy->Visible = false;
 			this->button_buy->Click += gcnew System::EventHandler(this, &MainForm::button_buy_Click);
@@ -882,14 +904,14 @@ namespace wp_hw06_4105056005 {
 			// button_notBuy
 			// 
 			this->button_notBuy->BackColor = System::Drawing::Color::Sienna;
-			this->button_notBuy->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_notBuy->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_notBuy->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button_notBuy->Location = System::Drawing::Point(1274, 869);
 			this->button_notBuy->Name = L"button_notBuy";
 			this->button_notBuy->Size = System::Drawing::Size(207, 85);
 			this->button_notBuy->TabIndex = 52;
-			this->button_notBuy->Text = L"¤£ÁÊ¶R";
+			this->button_notBuy->Text = L"ä¸è³¼è²·";
 			this->button_notBuy->UseVisualStyleBackColor = false;
 			this->button_notBuy->Visible = false;
 			this->button_notBuy->Click += gcnew System::EventHandler(this, &MainForm::button_notBuy_Click);
@@ -938,14 +960,14 @@ namespace wp_hw06_4105056005 {
 			// button_continue
 			// 
 			this->button_continue->BackColor = System::Drawing::Color::Sienna;
-			this->button_continue->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button_continue->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_continue->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->button_continue->Location = System::Drawing::Point(1122, 1046);
 			this->button_continue->Name = L"button_continue";
 			this->button_continue->Size = System::Drawing::Size(210, 85);
 			this->button_continue->TabIndex = 57;
-			this->button_continue->Text = L"Ä~Äò";
+			this->button_continue->Text = L"ç¹¼çºŒ";
 			this->button_continue->UseVisualStyleBackColor = false;
 			this->button_continue->Visible = false;
 			this->button_continue->Click += gcnew System::EventHandler(this, &MainForm::button_continue_Click);
@@ -954,14 +976,133 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->label_who->AutoSize = true;
 			this->label_who->BackColor = System::Drawing::Color::Orange;
-			this->label_who->Font = (gcnew System::Drawing::Font(L"·L³n¥¿¶ÂÅé", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_who->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 16.125F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
-			this->label_who->Location = System::Drawing::Point(982, 253);
+			this->label_who->Location = System::Drawing::Point(977, 253);
 			this->label_who->Name = L"label_who";
 			this->label_who->Size = System::Drawing::Size(435, 54);
 			this->label_who->TabIndex = 58;
-			this->label_who->Text = L"²{¦b¬O1¸¹ª±®aªº¦^¦X";
+			this->label_who->Text = L"ç¾åœ¨æ˜¯1è™Ÿç©å®¶çš„å›åˆ";
 			this->label_who->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// pictureBox5
+			// 
+			this->pictureBox5->BackColor = System::Drawing::Color::SeaShell;
+			this->pictureBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.BackgroundImage")));
+			this->pictureBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->pictureBox5->Location = System::Drawing::Point(453, 742);
+			this->pictureBox5->Name = L"pictureBox5";
+			this->pictureBox5->Size = System::Drawing::Size(283, 418);
+			this->pictureBox5->TabIndex = 60;
+			this->pictureBox5->TabStop = false;
+			this->pictureBox5->Visible = false;
+			this->pictureBox5->Click += gcnew System::EventHandler(this, &MainForm::pictureBox5_Click);
+			// 
+			// pictureBox6
+			// 
+			this->pictureBox6->BackColor = System::Drawing::Color::SeaShell;
+			this->pictureBox6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.BackgroundImage")));
+			this->pictureBox6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->pictureBox6->Location = System::Drawing::Point(774, 742);
+			this->pictureBox6->Name = L"pictureBox6";
+			this->pictureBox6->Size = System::Drawing::Size(283, 418);
+			this->pictureBox6->TabIndex = 61;
+			this->pictureBox6->TabStop = false;
+			this->pictureBox6->Visible = false;
+			this->pictureBox6->Click += gcnew System::EventHandler(this, &MainForm::pictureBox5_Click);
+			// 
+			// pictureBox7
+			// 
+			this->pictureBox7->BackColor = System::Drawing::Color::SeaShell;
+			this->pictureBox7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox7.BackgroundImage")));
+			this->pictureBox7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->pictureBox7->Location = System::Drawing::Point(1078, 742);
+			this->pictureBox7->Name = L"pictureBox7";
+			this->pictureBox7->Size = System::Drawing::Size(283, 418);
+			this->pictureBox7->TabIndex = 62;
+			this->pictureBox7->TabStop = false;
+			this->pictureBox7->Visible = false;
+			this->pictureBox7->Click += gcnew System::EventHandler(this, &MainForm::pictureBox5_Click);
+			// 
+			// pictureBox8
+			// 
+			this->pictureBox8->BackColor = System::Drawing::Color::SeaShell;
+			this->pictureBox8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox8.BackgroundImage")));
+			this->pictureBox8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->pictureBox8->Location = System::Drawing::Point(1389, 742);
+			this->pictureBox8->Name = L"pictureBox8";
+			this->pictureBox8->Size = System::Drawing::Size(283, 418);
+			this->pictureBox8->TabIndex = 63;
+			this->pictureBox8->TabStop = false;
+			this->pictureBox8->Visible = false;
+			this->pictureBox8->Click += gcnew System::EventHandler(this, &MainForm::pictureBox5_Click);
+			// 
+			// pictureBox9
+			// 
+			this->pictureBox9->BackColor = System::Drawing::Color::SeaShell;
+			this->pictureBox9->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox9.BackgroundImage")));
+			this->pictureBox9->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->pictureBox9->Location = System::Drawing::Point(1700, 742);
+			this->pictureBox9->Name = L"pictureBox9";
+			this->pictureBox9->Size = System::Drawing::Size(283, 418);
+			this->pictureBox9->TabIndex = 64;
+			this->pictureBox9->TabStop = false;
+			this->pictureBox9->Visible = false;
+			this->pictureBox9->Click += gcnew System::EventHandler(this, &MainForm::pictureBox5_Click);
+			// 
+			// label_p2_dead
+			// 
+			this->label_p2_dead->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->label_p2_dead->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->label_p2_dead->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(136)));
+			this->label_p2_dead->ForeColor = System::Drawing::Color::Firebrick;
+			this->label_p2_dead->Location = System::Drawing::Point(1873, 390);
+			this->label_p2_dead->Name = L"label_p2_dead";
+			this->label_p2_dead->Size = System::Drawing::Size(232, 87);
+			this->label_p2_dead->TabIndex = 65;
+			this->label_p2_dead->Text = L"ç ´ç”¢";
+			this->label_p2_dead->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->label_p2_dead->Visible = false;
+			// 
+			// label_p3_dead
+			// 
+			this->label_p3_dead->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->label_p3_dead->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->label_p3_dead->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(136)));
+			this->label_p3_dead->ForeColor = System::Drawing::Color::Firebrick;
+			this->label_p3_dead->Location = System::Drawing::Point(365, 1006);
+			this->label_p3_dead->Name = L"label_p3_dead";
+			this->label_p3_dead->Size = System::Drawing::Size(232, 87);
+			this->label_p3_dead->TabIndex = 66;
+			this->label_p3_dead->Text = L"ç ´ç”¢";
+			this->label_p3_dead->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->label_p3_dead->Visible = false;
+			// 
+			// label_p4_dead
+			// 
+			this->label_p4_dead->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->label_p4_dead->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->label_p4_dead->Font = (gcnew System::Drawing::Font(L"å¾®è»Ÿæ­£é»‘é«”", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(136)));
+			this->label_p4_dead->ForeColor = System::Drawing::Color::Firebrick;
+			this->label_p4_dead->Location = System::Drawing::Point(1873, 1016);
+			this->label_p4_dead->Name = L"label_p4_dead";
+			this->label_p4_dead->Size = System::Drawing::Size(232, 87);
+			this->label_p4_dead->TabIndex = 67;
+			this->label_p4_dead->Text = L"ç ´ç”¢";
+			this->label_p4_dead->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->label_p4_dead->Visible = false;
+			// 
+			// èªªæ˜èˆ‡åœ–æºToolStripMenuItem
+			// 
+			this->èªªæ˜èˆ‡åœ–æºToolStripMenuItem->Name = L"èªªæ˜èˆ‡åœ–æºToolStripMenuItem";
+			this->èªªæ˜èˆ‡åœ–æºToolStripMenuItem->Size = System::Drawing::Size(145, 34);
+			this->èªªæ˜èˆ‡åœ–æºToolStripMenuItem->Text = L"èªªæ˜èˆ‡åœ–æº";
 			// 
 			// MainForm
 			// 
@@ -971,7 +1112,12 @@ namespace wp_hw06_4105056005 {
 			this->AutoSize = true;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(2506, 1417);
+			this->ClientSize = System::Drawing::Size(2479, 1417);
+			this->Controls->Add(this->label_p4_dead);
+			this->Controls->Add(this->label_p3_dead);
+			this->Controls->Add(this->label_p2_dead);
+			this->Controls->Add(this->pictureBox9);
+			this->Controls->Add(this->pictureBox5);
 			this->Controls->Add(this->label_who);
 			this->Controls->Add(this->button_continue);
 			this->Controls->Add(this->picture_avatar4);
@@ -987,7 +1133,6 @@ namespace wp_hw06_4105056005 {
 			this->Controls->Add(this->label_showDice2);
 			this->Controls->Add(this->label_showDice);
 			this->Controls->Add(this->button_dice);
-			this->Controls->Add(this->pictureBox_gif);
 			this->Controls->Add(this->label_p4_name);
 			this->Controls->Add(this->label_p3_name);
 			this->Controls->Add(this->label_p2_name);
@@ -1031,13 +1176,17 @@ namespace wp_hw06_4105056005 {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->label_start);
 			this->Controls->Add(this->menuStrip1);
+			this->Controls->Add(this->pictureBox8);
+			this->Controls->Add(this->pictureBox7);
+			this->Controls->Add(this->pictureBox6);
+			this->Controls->Add(this->pictureBox_gif);
 			this->DoubleBuffered = true;
-			this->Font = (gcnew System::Drawing::Font(L"·s²Ó©úÅé", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Font = (gcnew System::Drawing::Font(L"æ–°ç´°æ˜é«”", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Name = L"MainForm";
-			this->ShowIcon = false;
 			this->Text = L"Lord of the monopoly";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
@@ -1050,12 +1199,17 @@ namespace wp_hw06_4105056005 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_avatar2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_avatar3))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_avatar4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	public: System::Void hidepeople() {		//ÁôÂÃ¤£¦s¦bªºª±®a
+	public: System::Void hidepeople() {		//éš±è—ä¸å­˜åœ¨çš„ç©å®¶
 		if (people < 4) {
 			label_player4->Visible = false;
 			pictureBox4->Visible = false;
@@ -1069,11 +1223,11 @@ namespace wp_hw06_4105056005 {
 			picture_avatar3->Visible = false;
 		}
 	}
-	//¹CÀ¸¶}©l«eªºªì©l¤Æ
+	//éŠæˆ²é–‹å§‹å‰çš„åˆå§‹åŒ–
 	public: System::Void initialize() {
 		label_p1_name->Text = playerName[0];
 
-		playerName[1] = "Cyclops";
+		playerName[1] = "Wolverine";
 		pmoney[1] = pmoney[0];
 		playerName[2] = "Gandalf";
 		pmoney[2] = pmoney[0];
@@ -1094,7 +1248,7 @@ namespace wp_hw06_4105056005 {
 		int^ pi = gcnew int;
 		for (*pi = 0; *pi < 30; (*pi)++) {
 			phouses[*pi] = 0;
-			owner[*pi] = 0;//0¥NªíµL¤H¾Ö¦³¦¹¶ô¦a
+			owner[*pi] = 0;//0ä»£è¡¨ç„¡äººæ“æœ‰æ­¤å¡Šåœ°
 		}
 
 		pnoTax[0] = 0;
@@ -1136,52 +1290,66 @@ namespace wp_hw06_4105056005 {
 		show_map_label(label24, 24);	show_map_label(label25, 25);	show_map_label(label26, 26);
 		show_map_label(label27, 27);	show_map_label(label28, 28);	show_map_label(label29, 29);
 
-		//¶}©l¹CÀ¸
-		button_dice->Visible = true;	//¯u¤Hª±®aªº¦^¦X¡A»ë¤l«ö¶s·|¥X²{
-		label_who->Text = "²{¦b¬O" + ((*pround) + 1) + "¸¹ª±®aªº¦^¦X";
+		//é–‹å§‹éŠæˆ²
+		button_dice->Visible = true;	//çœŸäººç©å®¶çš„å›åˆï¼Œéª°å­æŒ‰éˆ•æœƒå‡ºç¾
+		label_who->Text = "ç¾åœ¨æ˜¯" + ((*pround) + 1) + "è™Ÿç©å®¶çš„å›åˆ";
 	}
 
-	//show¥Xª±®aª¬ºA
+	//showå‡ºç©å®¶ç‹€æ…‹
 	private: System::Void show_player_label(Label^ label, int n) {
-		label->Text = "½s¸¹: " + (n + 1) + "¸¹ª±®a\n";
-		label->Text += "ª÷¿ú¼Æ: " + pmoney[n] + "\n";
-		label->Text += "¥Ø«e¦ì¸m: " + plocations[pposition[n]] + "\n";
-		//ÀË¬d¯}²£
+		label->Text = "ç·¨è™Ÿ: " + (n + 1) + "è™Ÿç©å®¶\n";
+		label->Text += "é‡‘éŒ¢æ•¸: " + pmoney[n] + "\n";
+		label->Text += "ç›®å‰ä½ç½®: " + plocations[pposition[n]] + "\n";
+		label->Text += "é€ƒç¨…å¡: " + pnoTax[n] + "å¼µ\n";
+		//æª¢æŸ¥ç ´ç”¢
 		if (pmoney[*pround] <= 0) {
-			MessageBox::Show("ª±®a" + playerName[n] + "¯}²£¤F!!!");
+			if (*pround == 1)
+				label_p2_dead->Visible = true;
+			else if(*pround == 2)
+				label_p3_dead->Visible = true;
+			else if (*pround == 3)
+				label_p4_dead->Visible = true;
+			else if (*pround == 0) {	//ä¸€è™Ÿç©å®¶ç ´ç”¢
+				button_next->Visible = false;
+				label_showEvent->Visible = true;
+				label_showEvent->Text = "å–”...ä½ ç ´ç”¢äº†:(\n\né—œæ‰æ­¤é é¢å†é‡æ–°ä¾†ä¸€å±€å§~";
+			}
 			alive[*pround] = 1;
-			//*preturn = 1;
-			//this->Close();
+		}
+		//é›»è…¦ç©å®¶éƒ½æ­»äº¡äº†
+		if ((people == 2 && alive[1] == 1) || (alive[2] == 1 && alive[1] == 1 && people == 3) || (alive[3] == 1 && alive[2] == 1 && alive[1] == 1)) {
+			label_showEvent->Visible = true;
+			button_continue->Visible = false;
+			label_showEvent->Text = "æ­å–œä½ è´å¾—å‹åˆ©!!!\n\né—œæ‰æ­¤é é¢å†é‡æ–°ä¾†ä¸€å±€å§:)";
 		}
 	}
-	//show¥X¦a¹Ï®æ¤l
+	//showå‡ºåœ°åœ–æ ¼å­
 	private: System::Void show_map_label(Label^ map, int n) {
 		map->Text = "";
-		//©Ğ¤l¼Æ¶q¡A¦a¦W¡A©Ğ»ù
-		if (phouses[n] != 0) {
-			map->Text += phouses[n] + "´É©Ğ¤l\n";
-		}
+		//æˆ¿å­æ•¸é‡ï¼Œåœ°åï¼Œæˆ¿åƒ¹
+		if (phouses[n] != 0)
+			map->Text += phouses[n] + "æ£Ÿæˆ¿å­\n";
 		map->Text += plocations[n] + "\n";
 		if(n != 0 && n != 6 && n != 17  && n!= 10 && n != 25)
-			map->Text += plocaMon[n] + "¤¸\n";
+			map->Text += plocaMon[n] + "å…ƒ\n";
 	}
-	//ÂY»ë¤l«ö¶s
+	//æ“²éª°å­æŒ‰éˆ•
 	private: System::Void button_dice_Click(System::Object^  sender, System::EventArgs^  e) {
 		label_showDice->Visible = true;
 		button_dice->Visible = false;
 		srand(time(NULL));
 		*pdice = (rand() % 11) + 2;
-		label_showDice2->Text = *pdice + " ÂI";
+		label_showDice2->Text = *pdice + " é»";
 		pposition[*pround] += *pdice;
 		label_showDice2->Visible = true;
 		label_toLocation->Visible = true;
 		if (pposition[*pround] < 30)
-			label_toLocation->Text = "«e©¹¦aÂI... " + plocations[pposition[*pround]];
+			label_toLocation->Text = "å‰å¾€åœ°é»  " + plocations[pposition[*pround]];
 		else
-			label_toLocation->Text = "«e©¹¦aÂI... " + plocations[pposition[*pround]-30];
+			label_toLocation->Text = "å‰å¾€åœ°é»  " + plocations[pposition[*pround]-30];
 		button_yes->Visible = true;
 	}
-	//ÂY§¹»ë¤l¡A½T»{«e©¹¦a°Ï
+	//æ“²å®Œéª°å­ï¼Œç¢ºèªå‰å¾€åœ°å€
 	private: System::Void button_yes_Click(System::Object^  sender, System::EventArgs^  e) {
 		button_yes->Visible = false;
 		label_showDice->Visible = false;
@@ -1191,184 +1359,193 @@ namespace wp_hw06_4105056005 {
 		label_showEvent->Text = "";
 		if (pposition[*pround] >= 30) {
 			pposition[*pround] -= 30;
-			label_showEvent->Text += "¸g¹L°_ÂI¡AÀò±o300¤¸¼úÀy¡C\n";
+			label_showEvent->Text += "ç¶“éèµ·é»ï¼Œç²å¾—300å…ƒçå‹µã€‚\n";
 			pmoney[*pround] += 300;
 		}
-		show_player_label(label_player1, 0);	//ª±®a¦ì¸mÅÜ§ó¡A§ó·s¨¤¦âª¬ºAÄæ
-		picture_avatar1->Location = switch_map(pposition[*pround])->Location;	//²¾°Ê¨¤¦â¦b¦a¹Ï¤Wªº¤p¤è¶ô
+		show_player_label(label_player1, 0);	//ç©å®¶ä½ç½®è®Šæ›´ï¼Œæ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+		picture_avatar1->Location = switch_map(pposition[*pround])->Location;	//ç§»å‹•è§’è‰²åœ¨åœ°åœ–ä¸Šçš„å°æ–¹å¡Š
 		if (pposition[*pround] == 6) {
-			label_showEvent->Text += "¦M¾÷´N¬OÂà¾÷¡C ¿Ë·Rªºª±®a¡A©â¨ú¤@±i¾÷·|µP¡C\n";
-			//chance();
-			button_next->Visible = true;
+			label_showEvent->Text += "-æ©Ÿæœƒ-\nå±æ©Ÿå°±æ˜¯è½‰æ©Ÿã€‚è¦ªæ„›çš„ç©å®¶ï¼Œå¾ä¸‹é¢äº”å¼µå¡ç‰Œé»é¸å…¶ä¸­ä¸€å¼µã€‚\n";
+			//chance
+			pictureBox5->Visible = true;
+			pictureBox6->Visible = true;
+			pictureBox7->Visible = true;
+			pictureBox8->Visible = true;
+			pictureBox9->Visible = true;
 		}
-		//¨ì¹F©R¹B¤è¶ô
+		//åˆ°é”å‘½é‹æ–¹å¡Š
 		else if (pposition[*pround] == 17) {
-			label_showEvent->Text += "§A¨ì¹F¤F©R¹B¤k¯«ªº·µ°ó¡A¦o½ç¤©§A¤@±i©R¹B¥dµP¡C\n";
-			//community();
-			button_next->Visible = true;
+			label_showEvent->Text += "-å‘½é‹-\nåœ¨å‘½é‹å¥³ç¥çš„æ®¿å ‚ä¹‹ä¸‹ï¼Œå¥¹è³œäºˆä½ ä¸€å¼µå‘½é‹å¡ç‰Œï¼Œé»é¸ä¸‹åˆ—å…¶ä¸­ä¸€å¼µã€‚\n";
+			//community
+			pictureBox5->Visible = true;
+			pictureBox6->Visible = true;
+			pictureBox7->Visible = true;
+			pictureBox8->Visible = true;
+			pictureBox9->Visible = true;
 		}
-		//¨ì¹F©âµ|¤è¶ô
+		//åˆ°é”æŠ½ç¨…æ–¹å¡Š
 		else if (pposition[*pround] == 10 || pposition[*pround] == 25) {
-			label_showEvent->Text += "¯u­Ë·°¡A¬O¦¬µ|®É¶¡!!! ½Ğ¤WÃº200¶ô¡C\n";
+			label_showEvent->Text += "çœŸå€’æ¥£ï¼Œæ˜¯æ”¶ç¨…æ™‚é–“!!! è«‹ä¸Šç¹³200å¡Šã€‚\n";
 			if (pnoTax[*pround] > 0) {
-				label_showEvent->Text += "¨Ï¥Î°kµ|±KÄy!!!§Ú´N¬O¦º¤£Ãºµ|¤T¤Q¤»¦¡!\n";
+				label_showEvent->Text += "ä½¿ç”¨é€ƒç¨…å¯†ç±!!!æˆ‘å°±æ˜¯æ­»ä¸ç¹³ç¨…ä¸‰åå…­å¼!\n";
 				pnoTax[*pround]--;
 			}
 			else
 				pmoney[*pround] -= 200;
 			button_next->Visible = true;
 		}
-		//¨ì¹F°_ÂI¡A¤£°µ¥ô¦ó¨Æ
+		//åˆ°é”èµ·é»ï¼Œä¸åšä»»ä½•äº‹
 		else if (pposition[*pround] == 0) {
-			label_showEvent->Text += "Åwªï¦^¨Ó:)";
+			label_showEvent->Text += "æ­¡è¿å›ä¾†:)";
 			button_next->Visible = true;
 		}
-		//©Ğ«Î¤è¶ô
+		//æˆ¿å±‹æ–¹å¡Š
 		else {
-			//¨ì¹F¥iÁÊ¶Rªº¤è¶ô
+			//åˆ°é”å¯è³¼è²·çš„æ–¹å¡Š
 			if (owner[pposition[*pround]] == (*pround) + 1 || owner[pposition[*pround]] == 0) {
-				//¤g¦a¨ì¹F¤­¯Å©Ğ¤l
+				//åœŸåœ°åˆ°é”äº”ç´šæˆ¿å­
 				if (phouses[pposition[*pround]] >= 5) {
-					label_showEvent->Text += "¦¹¦aÂI¤w¬O¤­¯Å©Ğ¤l¡A¨ì¹F¤g¦a¤W­­¡AµLªk¦A»\©Ğ¤l¡C\n¦¬¨ú¯²ª÷¡AÀò±o" + (int)plocaMon[pposition[*pround]] * 1.5 + "¤¸¡C\n";
+					label_showEvent->Text += "æ­¤åœ°é»å·²æ˜¯äº”ç´šæˆ¿å­ï¼Œåˆ°é”åœŸåœ°ä¸Šé™ï¼Œç„¡æ³•å†è“‹æˆ¿å­ã€‚\næ”¶å–ç§Ÿé‡‘ï¼Œç²å¾—" + (int)plocaMon[pposition[*pround]] * 1.5 + "å…ƒã€‚\n";
 					pmoney[*pround] += (int)plocaMon[pposition[*pround]] * 1.5;
 					button_next->Visible = true;
 				}
-				//¶R©Ğ¤l
+				//è²·æˆ¿å­
 				else {
 					if (phouses[pposition[*pround]] == 0)
-						label_showEvent->Text += "½Ğ°İ­nÁÊ¶R©Ğ¤l¶Ü? ¦¹¦a©Ğ¤l­n" + plocaMon[pposition[*pround]] + "¤¸¡C";
+						label_showEvent->Text += "è«‹å•è¦è³¼è²·æˆ¿å­å—? æ­¤åœ°æˆ¿å­è¦" + plocaMon[pposition[*pround]] + "å…ƒã€‚";
 					else {
-						label_showEvent->Text += "§A¦b¦¹¦a¤w¸g¦³" + phouses[pposition[*pround]] + "¯Å©Ğ¤l¡C¦¬¨ú¯²ª÷¡AÀò±o" + (int)plocaMon[pposition[*pround]] / 2 * 1.5 + "¤¸¡C\n";
+						label_showEvent->Text += "ä½ åœ¨æ­¤åœ°å·²ç¶“æœ‰" + phouses[pposition[*pround]] + "ç´šæˆ¿å­ã€‚æ”¶å–ç§Ÿé‡‘ï¼Œç²å¾—" + (int)plocaMon[pposition[*pround]] / 2 * 1.5 + "å…ƒã€‚\n";
 						pmoney[*pround] += (int)plocaMon[pposition[*pround]] / 2 * 1.5;
-						label_showEvent->Text += "½Ğ°İ­n¤É¯Å©Ğ¤l¶Ü?»İ­nªá¶O" + plocaMon[pposition[*pround]] + "¤¸¡C\n";
+						label_showEvent->Text += "è«‹å•è¦å‡ç´šæˆ¿å­å—?éœ€è¦èŠ±è²»" + plocaMon[pposition[*pround]] + "å…ƒã€‚\n";
 					}
 					button_buy->Visible = true;
 					button_notBuy->Visible = true;
 				}
 			}
 
-			//½ò¤W§O¤H®aªº¤g¦a
+			//è¸©ä¸Šåˆ¥äººå®¶çš„åœŸåœ°
 			else if (owner[pposition[*pround]] != (*pround) + 1 && owner[pposition[*pround]] > 0) {
 				if (alive[owner[pposition[*pround]] - 1] == 0) {
-					label_showEvent->Text += "§A¯¸¤W¤F" + owner[pposition[*pround]] + "¸¹ª±®aªº¤g¦a¡A»İ­n¥I¥L" + (int)plocaMon[pposition[*pround]] * 0.5  + "¤¸¹L¸ô¶O¡C\n";
+					label_showEvent->Text += "ä½ ç«™ä¸Šäº†" + owner[pposition[*pround]] + "è™Ÿç©å®¶çš„åœŸåœ°ï¼Œéœ€è¦ä»˜ä»–" + (int)plocaMon[pposition[*pround]] * 0.5  + "å…ƒéè·¯è²»ã€‚\n";
 					pmoney[*pround] -= (int)plocaMon[pposition[*pround]] * 0.5;
 					pmoney[owner[pposition[*pround]] - 1] += (int)plocaMon[pposition[*pround]] * 0.5;
+					refresh_status();
 					button_next->Visible = true;
 				}
 				else {
-					label_showEvent->Text += "¾Ö¦³³o¶ô¦aªºª±®a¤w¸g¦º¤`¤F¡A³oÃä¬O¤@¤ù¥Rº¡©Çª«ªº¯î¦a¡C\n" + (int)plocaMon[pposition[*pround]] + "¤¸¥i¥H±µºŞ¥Lªº¤g¦a¡C\n";
+					label_showEvent->Text += "æ“æœ‰é€™å¡Šåœ°çš„ç©å®¶å·²ç¶“æ­»äº¡äº†ï¼Œé€™é‚Šæ˜¯ä¸€ç‰‡å……æ»¿æ€ªç‰©çš„è’åœ°ã€‚\n" + (int)plocaMon[pposition[*pround]] + "å…ƒå¯ä»¥æ¥ç®¡ä»–çš„åœŸåœ°ã€‚\n";
 					button_buy->Visible = true;
 					button_notBuy->Visible = true;
 				}
 			}
 		}
-		show_player_label(label_player1, 0);	//§ó·s¨¤¦âª¬ºAÄæ
+		show_player_label(label_player1, 0);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
 	}
-	//¶R©Ğ¤l
+	//è²·æˆ¿å­
 	private: System::Void button_buy_Click(System::Object^  sender, System::EventArgs^  e) {
 		button_buy->Visible = false;
 		button_notBuy->Visible = false;
 		button_next->Visible = true;
 		pmoney[*pround] -= plocaMon[pposition[*pround]];
-		show_player_label(label_player1, 0);	//ª÷¿ú¼Æ¶qÅÜ§ó¡A§ó·s¨¤¦âª¬ºAÄæ
 		phouses[pposition[*pround]] += 1;
 		owner[pposition[*pround]] = (*pround) + 1;
 		if (phouses[pposition[*pround]] < 5)
 			plocaMon[pposition[*pround]] *= 2;
 		switch_map(pposition[*pround])->BackColor = System::Drawing::Color::LightCoral;
-		show_map_label(switch_map(pposition[*pround]), pposition[*pround]);		//§ó·s¦a¹Ïªº¬Y¤@®æ
-		label_showEvent->Text = "ÁÊ¶R¤F[" + plocations[pposition[*pround]] +"]ªº©Ğ¤l¡C\n¦¹¦aÂI¬O" + phouses[pposition[*pround]] + "¯Å©Ğ«Î¡C";
+		show_map_label(switch_map(pposition[*pround]), pposition[*pround]);		//æ›´æ–°åœ°åœ–çš„æŸä¸€æ ¼
+		label_showEvent->Text = "è³¼è²·äº†[" + plocations[pposition[*pround]] +"]çš„æˆ¿å­ã€‚\næ­¤åœ°é»æ˜¯" + phouses[pposition[*pround]] + "ç´šæˆ¿å±‹ã€‚";
+		show_player_label(label_player1, 0);	//é‡‘éŒ¢æ•¸é‡è®Šæ›´ï¼Œæ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
 	}
-	//©Úµ´ÁÊ¶R©Ğ¤l
+	//æ‹’çµ•è³¼è²·æˆ¿å­
 	private: System::Void button_notBuy_Click(System::Object^  sender, System::EventArgs^  e) {
 		button_buy->Visible = false;
 		button_notBuy->Visible = false;
 		button_next->Visible = true;
-		label_showEvent->Text = "©Úµ´ÁÊ¶R©Ğ¤l¡A¹CÀ¸Ä~Äò¡C";
+		label_showEvent->Text = "æ‹’çµ•è³¼è²·æˆ¿å­ï¼ŒéŠæˆ²ç¹¼çºŒã€‚";
 	}
-	//µ²§ô¦¹¦^¦X«ö¶s¡A·|±µ¨ì¤U¤@¦ì¹q¸£ª±®aªº¹CÀ¸°j°é
+	//çµæŸæ­¤å›åˆæŒ‰éˆ•ï¼Œæœƒæ¥åˆ°ä¸‹ä¸€ä½é›»è…¦ç©å®¶çš„éŠæˆ²è¿´åœˆ
 	private: System::Void button_next_Click(System::Object^  sender, System::EventArgs^  e) {
 		button_next->Visible = false;
 		(*pround)++;
 		autoGame();
 	}
-	//¹q¸£¦Û°Ê¹CÀ¸
+	//é›»è…¦è‡ªå‹•éŠæˆ²
 	private: System::Void autoGame() {
-		//ÀË¬d¬O§_¦º¤`
+		//æª¢æŸ¥æ˜¯å¦æ­»äº¡
 		if (alive[*pround] != 0) {
 			(*pround)++;
 			if (*pround >= people) {
 				*pround = 0;
-				button_dice->Visible = true;	//¯u¤Hª±®aªº¦^¦X¡A»ë¤l«ö¶s·|¥X²{
+				button_dice->Visible = true;	//çœŸäººç©å®¶çš„å›åˆï¼Œéª°å­æŒ‰éˆ•æœƒå‡ºç¾
 				label_showEvent->Visible = false;
-				label_who->Text = "²{¦b¬O" + ((*pround) + 1) + "¸¹ª±®aªº¦^¦X";
+				label_who->Text = "ç¾åœ¨æ˜¯" + ((*pround) + 1) + "è™Ÿç©å®¶çš„å›åˆ";
 				return;
 			}
 		}
-		label_who->Text = "²{¦b¬O" + ((*pround)+1) + "¸¹ª±®aªº¦^¦X";
+		label_who->Text = "ç¾åœ¨æ˜¯" + ((*pround)+1) + "è™Ÿç©å®¶çš„å›åˆ";
 		srand(time(NULL));
 		*pdice = (rand() % 11) + 2;
 		pposition[*pround] += *pdice;
-		label_showEvent->Text = "ÂY¥X" + *pdice + "ÂI¡A";
+		label_showEvent->Text = "æ“²å‡º" + *pdice + "é»ï¼Œ";
 		if (pposition[*pround] < 30)
-			label_showEvent->Text += "«e©¹¦aÂI--" + plocations[pposition[*pround]] + "\n";
+			label_showEvent->Text += "å‰å¾€åœ°é»  " + plocations[pposition[*pround]] + "\n";
 		else
-			label_showEvent->Text += "«e©¹¦aÂI--" + plocations[pposition[*pround] - 30] + "\n";
+			label_showEvent->Text += "å‰å¾€åœ°é»  " + plocations[pposition[*pround] - 30] + "\n";
 
 		if (pposition[*pround] >= 30) {
 			pposition[*pround] -= 30;
-			label_showEvent->Text += "¸g¹L°_ÂI¡AÀò±o300¤¸¼úÀy¡C\n";
+			label_showEvent->Text += "ç¶“éèµ·é»ï¼Œç²å¾—300å…ƒçå‹µã€‚\n";
 			pmoney[*pround] += 300;
 		}
-		if (*pround == 1) {	//¤G¸¹ª±®a
-			show_player_label(label_player2, 1);	//ª±®a¦ì¸mÅÜ§ó¡A§ó·s¨¤¦âª¬ºAÄæ
-			picture_avatar2->Location = switch_map(pposition[*pround])->Location;	//²¾°Ê¨¤¦â¦b¦a¹Ï¤Wªº¤p¤è¶ô
+		if (*pround == 1) {	//äºŒè™Ÿç©å®¶
+			show_player_label(label_player2, 1);	//ç©å®¶ä½ç½®è®Šæ›´ï¼Œæ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+			picture_avatar2->Location = switch_map(pposition[*pround])->Location;	//ç§»å‹•è§’è‰²åœ¨åœ°åœ–ä¸Šçš„å°æ–¹å¡Š
 		}
-		else if (*pround == 2) {	//¤T¸¹ª±®a
-			show_player_label(label_player3, 2);	//ª±®a¦ì¸mÅÜ§ó¡A§ó·s¨¤¦âª¬ºAÄæ
-			picture_avatar3->Location = switch_map(pposition[*pround])->Location;	//²¾°Ê¨¤¦â¦b¦a¹Ï¤Wªº¤p¤è¶ô
+		else if (*pround == 2) {	//ä¸‰è™Ÿç©å®¶
+			show_player_label(label_player3, 2);	//ç©å®¶ä½ç½®è®Šæ›´ï¼Œæ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+			picture_avatar3->Location = switch_map(pposition[*pround])->Location;	//ç§»å‹•è§’è‰²åœ¨åœ°åœ–ä¸Šçš„å°æ–¹å¡Š
 		}
-		else if (*pround == 3) {	//¥|¸¹ª±®a
-			show_player_label(label_player4, 3);	//ª±®a¦ì¸mÅÜ§ó¡A§ó·s¨¤¦âª¬ºAÄæ
-			picture_avatar4->Location= switch_map(pposition[*pround])->Location;	//²¾°Ê¨¤¦â¦b¦a¹Ï¤Wªº¤p¤è¶ô
+		else if (*pround == 3) {	//å››è™Ÿç©å®¶
+			show_player_label(label_player4, 3);	//ç©å®¶ä½ç½®è®Šæ›´ï¼Œæ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+			picture_avatar4->Location= switch_map(pposition[*pround])->Location;	//ç§»å‹•è§’è‰²åœ¨åœ°åœ–ä¸Šçš„å°æ–¹å¡Š
 		}
 		if (pposition[*pround] == 6) {
-			label_showEvent->Text += "¦M¾÷´N¬OÂà¾÷¡C ¿Ë·Rªºª±®a¡A©â¨ú¤@±i¾÷·|µP¡C\n";
-			//chance();
+			label_showEvent->Text += "å±æ©Ÿå°±æ˜¯è½‰æ©Ÿã€‚ è¦ªæ„›çš„ç©å®¶ï¼ŒæŠ½å–ä¸€å¼µæ©Ÿæœƒç‰Œã€‚\n";
+			chance();
 		}
-		//¨ì¹F©R¹B¤è¶ô
+		//åˆ°é”å‘½é‹æ–¹å¡Š
 		else if (pposition[*pround] == 17) {
-			label_showEvent->Text += "§A¨ì¹F¤F©R¹B¤k¯«ªº·µ°ó¡A¦o½ç¤©§A¤@±i©R¹B¥dµP¡C\n";
-			//community();
+			label_showEvent->Text += "ä½ åˆ°é”äº†å‘½é‹å¥³ç¥çš„æ®¿å ‚ï¼Œå¥¹è³œäºˆä½ ä¸€å¼µå‘½é‹å¡ç‰Œã€‚\n";
+			chance();
 		}
-		//¨ì¹F©âµ|¤è¶ô
+		//åˆ°é”æŠ½ç¨…æ–¹å¡Š
 		else if (pposition[*pround] == 10 || pposition[*pround] == 25) {
-			label_showEvent->Text += "¯u­Ë·°¡A¬O¦¬µ|®É¶¡!!! ½Ğ¤WÃº200¶ô¡C\n";
+			label_showEvent->Text += "çœŸå€’æ¥£ï¼Œæ˜¯æ”¶ç¨…æ™‚é–“!!! è«‹ä¸Šç¹³200å¡Šã€‚\n";
 			if (pnoTax[*pround] > 0) {
-				label_showEvent->Text += "¨Ï¥Î°kµ|±KÄy!!!§Ú´N¬O¦º¤£Ãºµ|¤T¤Q¤»¦¡!\n";
+				label_showEvent->Text += "ä½¿ç”¨é€ƒç¨…å¯†ç±!!!æˆ‘å°±æ˜¯æ­»ä¸ç¹³ç¨…ä¸‰åå…­å¼!\n";
 				pnoTax[*pround]--;
 			}
 			else
 				pmoney[*pround] -= 200;
 		}
-		//¨ì¹F°_ÂI¡A¤£°µ¥ô¦ó¨Æ
+		//åˆ°é”èµ·é»ï¼Œä¸åšä»»ä½•äº‹
 		else if (pposition[*pround] == 0) {
-			label_showEvent->Text += "¦^¨ì°_ÂI:)";
+			label_showEvent->Text += "å›åˆ°èµ·é»:)";
 		}
 
-		//©Ğ«Î¤è¶ô
+		//æˆ¿å±‹æ–¹å¡Š
 		else {
-			//¨ì¹F¥iÁÊ¶Rªº¤è¶ô
+			//åˆ°é”å¯è³¼è²·çš„æ–¹å¡Š
 			if (owner[pposition[*pround]] == (*pround) + 1 || owner[pposition[*pround]] == 0) {
-				//¤g¦a¨ì¹F¤­¯Å©Ğ¤l
+				//åœŸåœ°åˆ°é”äº”ç´šæˆ¿å­
 				if (phouses[pposition[*pround]] >= 5) {
-					label_showEvent->Text += "¦¹¦a¤w¬O¤­¯Å©Ğ¤l¡A¦¬¨ú¯²ª÷¡AÀò±o" + (int)plocaMon[pposition[*pround]] * 1.5 + "¤¸¡C\n";
+					label_showEvent->Text += "æ­¤åœ°å·²æ˜¯äº”ç´šæˆ¿å­ï¼Œæ”¶å–ç§Ÿé‡‘ï¼Œç²å¾—" + (int)plocaMon[pposition[*pround]] * 1.5 + "å…ƒã€‚\n";
 					pmoney[*pround] += (int)plocaMon[pposition[*pround]] * 1.5;
 				}
-				//¶R©Ğ¤l
+				//è²·æˆ¿å­
 				else {
 					if (phouses[pposition[*pround]] != 0) {
-						label_showEvent->Text += "¦b¦¹¦a¤w¸g¦³" + phouses[pposition[*pround]] + "¯Å©Ğ¤l¡C¦¬¨ú¯²ª÷" + (int)plocaMon[pposition[*pround]] / 2 * 1.5 + "¤¸¡C\n";
+						label_showEvent->Text += "åœ¨æ­¤åœ°å·²ç¶“æœ‰" + phouses[pposition[*pround]] + "ç´šæˆ¿å­ã€‚æ”¶å–ç§Ÿé‡‘" + (int)plocaMon[pposition[*pround]] / 2 * 1.5 + "å…ƒã€‚\n";
 						pmoney[*pround] += (int)plocaMon[pposition[*pround]] / 2 * 1.5;
 					}
 					if (pmoney[*pround] > plocaMon[pposition[*pround]] + 150) {
@@ -1376,73 +1553,74 @@ namespace wp_hw06_4105056005 {
 						phouses[pposition[*pround]] += 1;
 						if (phouses[pposition[*pround]] < 5)
 							plocaMon[pposition[*pround]] *= 2;
-						label_showEvent->Text += "¿ï¾ÜÁÊ¶R["+ plocations[pposition[*pround]]+"]ªº©Ğ¤l¡C¬°" + phouses[pposition[*pround]] + "¯Å©Ğ«Î¡C";
+						label_showEvent->Text += "é¸æ“‡è³¼è²·["+ plocations[pposition[*pround]]+"]çš„æˆ¿å­ã€‚ç‚º" + phouses[pposition[*pround]] + "ç´šæˆ¿å±‹ã€‚";
 						owner[pposition[*pround]] = (*pround) + 1;
-						if (*pround == 1)	//¤G¸¹ª±®aÅÜ§ó¤g¦aÃC¦â
+						if (*pround == 1)	//äºŒè™Ÿç©å®¶è®Šæ›´åœŸåœ°é¡è‰²
 							switch_map(pposition[*pround])->BackColor = System::Drawing::Color::RoyalBlue;
-						else if (*pround == 2) 	//¤T¸¹ª±®aÅÜ§ó¤g¦aÃC¦â
+						else if (*pround == 2) 	//ä¸‰è™Ÿç©å®¶è®Šæ›´åœŸåœ°é¡è‰²
 							switch_map(pposition[*pround])->BackColor = System::Drawing::Color::MediumSeaGreen;
-						else if (*pround == 3)	//¥|¸¹ª±®aÅÜ§ó¤g¦aÃC¦â
+						else if (*pround == 3)	//å››è™Ÿç©å®¶è®Šæ›´åœŸåœ°é¡è‰²
 							switch_map(pposition[*pround])->BackColor = System::Drawing::Color::Gold;
-						show_map_label(switch_map(pposition[*pround]), pposition[*pround]);		//§ó·s¦a¹Ïªº¬Y¤@®æ
+						show_map_label(switch_map(pposition[*pround]), pposition[*pround]);		//æ›´æ–°åœ°åœ–çš„æŸä¸€æ ¼
 					}
 					else {
-						label_showEvent->Text += "©Úµ´ÁÊ¶R©Ğ¤l¡A¹CÀ¸Ä~Äò¡C";
+						label_showEvent->Text += "æ‹’çµ•è³¼è²·æˆ¿å­ï¼ŒéŠæˆ²ç¹¼çºŒã€‚";
 					}
 				}
 			}
-			//½ò¤W§O¤H®aªº¤g¦a
+			//è¸©ä¸Šåˆ¥äººå®¶çš„åœŸåœ°
 			else if (owner[pposition[*pround]] != (*pround) + 1 && owner[pposition[*pround]] > 0) {
 				if (alive[owner[pposition[*pround]] - 1] == 0) {
-					label_showEvent->Text += "¯¸¤W¤F" + owner[pposition[*pround]] + "¸¹ª±®aªº¤g¦a¡A¤ä¥I" + (int)plocaMon[pposition[*pround]] * 0.5 + "¤¸¹L¸ô¶O¡C\n";
+					label_showEvent->Text += "ç«™ä¸Šäº†" + owner[pposition[*pround]] + "è™Ÿç©å®¶çš„åœŸåœ°ï¼Œæ”¯ä»˜" + (int)plocaMon[pposition[*pround]] * 0.5 + "å…ƒéè·¯è²»ã€‚\n";
 					pmoney[*pround] -= (int)plocaMon[pposition[*pround]] * 0.5;
 					pmoney[owner[pposition[*pround]] - 1] += (int)plocaMon[pposition[*pround]] * 0.5;
+					refresh_status();
 				}
 				else {
-					label_showEvent->Text += "¾Ö¦³³o¶ô¦aªºª±®a¤w¦º¤`¡A" + (int)plocaMon[pposition[*pround]] + "¤¸¥i¥H±µºŞ¥Lªº¤g¦a¡C\n";
+					label_showEvent->Text += "æ“æœ‰é€™å¡Šåœ°çš„ç©å®¶å·²æ­»äº¡ï¼Œ" + (int)plocaMon[pposition[*pround]] + "å…ƒå¯ä»¥æ¥ç®¡ä»–çš„åœŸåœ°ã€‚\n";
 					if (pmoney[*pround] > plocaMon[pposition[*pround]] + 150) {
 						pmoney[*pround] -= plocaMon[pposition[*pround]];
 						phouses[pposition[*pround]] += 1;
 						if (phouses[pposition[*pround]] < 5)
 							plocaMon[pposition[*pround]] *= 2;
-						label_showEvent->Text += "¿ï¾Ü±µºŞ[" + plocations[pposition[*pround]] + "]ªº©Ğ¤l¡C¦¹¬°" + phouses[pposition[*pround]] + "¯Å©Ğ«Î¡C";
+						label_showEvent->Text += "é¸æ“‡æ¥ç®¡[" + plocations[pposition[*pround]] + "]çš„æˆ¿å­ã€‚æ­¤ç‚º" + phouses[pposition[*pround]] + "ç´šæˆ¿å±‹ã€‚";
 						owner[pposition[*pround]] = (*pround) + 1;
-						if (*pround == 1)	//¤G¸¹ª±®aÅÜ§ó¤g¦aÃC¦â
+						if (*pround == 1)	//äºŒè™Ÿç©å®¶è®Šæ›´åœŸåœ°é¡è‰²
 							switch_map(pposition[*pround])->BackColor = System::Drawing::Color::RoyalBlue;
-						else if (*pround == 2) 	//¤T¸¹ª±®aÅÜ§ó¤g¦aÃC¦â
+						else if (*pround == 2) 	//ä¸‰è™Ÿç©å®¶è®Šæ›´åœŸåœ°é¡è‰²
 							switch_map(pposition[*pround])->BackColor = System::Drawing::Color::MediumSeaGreen;
-						else if (*pround == 3)	//¥|¸¹ª±®aÅÜ§ó¤g¦aÃC¦â
+						else if (*pround == 3)	//å››è™Ÿç©å®¶è®Šæ›´åœŸåœ°é¡è‰²
 							switch_map(pposition[*pround])->BackColor = System::Drawing::Color::Gold;
-						show_map_label(switch_map(pposition[*pround]), pposition[*pround]);		//§ó·s¦a¹Ïªº¬Y¤@®æ
+						show_map_label(switch_map(pposition[*pround]), pposition[*pround]);		//æ›´æ–°åœ°åœ–çš„æŸä¸€æ ¼
 					}
 					else {
-						label_showEvent->Text += "©Úµ´±µºŞ©Ğ¤l¡A¹CÀ¸Ä~Äò¡C";
+						label_showEvent->Text += "æ‹’çµ•æ¥ç®¡æˆ¿å­ï¼ŒéŠæˆ²ç¹¼çºŒã€‚";
 					}
 				}
 			}
 		}
-		if (*pround == 1)	//¤G¸¹ª±®a
-			show_player_label(label_player2, 1);	//§ó·s¨¤¦âª¬ºAÄæ
-		else if (*pround == 2) 	//¤T¸¹ª±®a
-			show_player_label(label_player3, 2);	//§ó·s¨¤¦âª¬ºAÄæ
-		else if (*pround == 3)	//¥|¸¹ª±®a
-			show_player_label(label_player4, 3);	//§ó·s¨¤¦âª¬ºAÄæ
 		button_continue->Visible = true;
+		if (*pround == 1)	//äºŒè™Ÿç©å®¶
+			show_player_label(label_player2, 1);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+		else if (*pround == 2) 	//ä¸‰è™Ÿç©å®¶
+			show_player_label(label_player3, 2);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+		else if (*pround == 3)	//å››è™Ÿç©å®¶
+			show_player_label(label_player4, 3);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
 	}
-	//¹q¸£¦Û°Êª±§¹¤@¦^¦X«á¡Aª±®a«ö¤UÄ~Äò
+	//é›»è…¦è‡ªå‹•ç©å®Œä¸€å›åˆå¾Œï¼Œç©å®¶æŒ‰ä¸‹ç¹¼çºŒ
 	private: System::Void button_continue_Click(System::Object^  sender, System::EventArgs^  e) {
 		button_continue->Visible = false;
 		(*pround)++;
 		if (*pround >= people) {
 			*pround = 0;
-			button_dice->Visible = true;	//¯u¤Hª±®aªº¦^¦X¡A»ë¤l«ö¶s·|¥X²{
+			button_dice->Visible = true;	//çœŸäººç©å®¶çš„å›åˆï¼Œéª°å­æŒ‰éˆ•æœƒå‡ºç¾
 			label_showEvent->Visible = false;
-			label_who->Text = "²{¦b¬O" + ((*pround) + 1) + "¸¹ª±®aªº¦^¦X";
+			label_who->Text = "ç¾åœ¨æ˜¯" + ((*pround) + 1) + "è™Ÿç©å®¶çš„å›åˆ";
 			return;
 		}
 		autoGame();
 	}
-	//§ä¨ì¹ïÀ³mapªºlabel name
+	//æ‰¾åˆ°å°æ‡‰mapçš„label name
 	private: Label^ switch_map(int n) {
 		switch (n)
 		{
@@ -1479,6 +1657,114 @@ namespace wp_hw06_4105056005 {
 		default:
 			break;
 		}
+	}
+	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+	private: System::Void refresh_status() {
+		if (owner[pposition[*pround]] == 2)	//äºŒè™Ÿç©å®¶
+			show_player_label(label_player2, 1);
+		else if (owner[pposition[*pround]] == 3) 	//ä¸‰è™Ÿç©å®¶
+			show_player_label(label_player3, 2);
+		else if (owner[pposition[*pround]] == 4)	//å››è™Ÿç©å®¶
+			show_player_label(label_player4, 3);
+		else if (owner[pposition[*pround]] == 1)	//ä¸€è™Ÿç©å®¶
+			show_player_label(label_player1, 0);
+	}
+	//æŠ½å–å¡ç‰Œ
+	private: System::Void pictureBox5_Click(System::Object^  sender, System::EventArgs^  e) {
+		pictureBox5->Visible = false;
+		pictureBox6->Visible = false;
+		pictureBox7->Visible = false;
+		pictureBox8->Visible = false;
+		pictureBox9->Visible = false;
+		label_showEvent->Text = "";
+		chance();
+		button_next->Visible = true;
+	}
+	//æ©Ÿæœƒå‘½é‹
+	private: System::Void chance() {
+		int^ ptemp = gcnew int;
+		srand(time(NULL));
+		*ptemp = rand() % 9;
+		switch (*ptemp) {
+		case 0:
+			label_showEvent->Text += "ä¸€åå—å‚·åˆè¿·è·¯çš„ç²¾éˆå‘ä½ æ±‚åŠ©ï¼Œä½ çµ¦äº†ä»–250å…ƒæ—…è²»ã€‚";
+			pmoney[*pround] -= 250;
+			break;
+		case 1:
+			label_showEvent->Text += "è¢«æ²é€²åŠç¸äººæˆ°çˆ­ï¼Œé‡å‚·ä½é™¢ï¼ŒèŠ±700å…ƒæ²»ç™‚è²»ã€‚";
+			pmoney[*pround] -= 700;
+			break;
+		case 2:
+			label_showEvent->Text += "å¾—åˆ°é€ƒç¨…å¤§å¸«çš„è¦ªè‡ªæŒ‡é»ï¼Œç²å¾—ä¸€æœ¬é€ƒç¨…å¯†ç±ã€‚(å¯ä»¥å°‘ç¹³ä¸€æ¬¡ç¨…)";
+			pnoTax[*pround] += 1;
+			break;
+		case 3:
+			label_showEvent->Text += "çŸ®äººé ˜å°è€…é€ä¸Š500å…ƒï¼Œå·²è¡¨ç¤ºå‹å¥½ï¼Œçœ‹ä¾†ä½ äº¤åˆ°äº†æ–°æœ‹å‹å‘¢ã€‚";
+			pmoney[*pround] += 500;
+			break;
+		case 4:
+			label_showEvent->Text += "åˆ°é»‘å¸‚è®Šè³£ä½ å·ä¾†çš„ç²¾éˆå¯¶åŠï¼Œè³ºäº†400å…ƒï¼Œè‰¯å¿ƒå¥½åƒæœ‰é»ä¸å®‰...";
+			pmoney[*pround] += 400;
+			break;
+		case 5:
+			label_showEvent->Text += "ä½ é¤Šçš„é¾æ™è„«é–éˆï¼Œå¤§è‚†ç ´å£ä½ çš„æ®–æ°‘åœ°ï¼Œæå¤±æ…˜é‡ï¼ŒèŠ±è²»1000å…ƒé‡å»ºã€‚";
+			pmoney[*pround] -= 1000;
+			break;
+		case 6:
+			label_showEvent->Text += "ä½ åœ¨å»¢æ£„çš„ç¤¦å‘è£¡æ‰¾åˆ°ä¸€ç®±é‡‘å¹£ï¼Œç™¼è²¡å•¦ç™¼è²¡å•¦!!å–”ï¼Œç­‰ç­‰ï¼Œè£¡é¢åªæœ‰50å…ƒ...";
+			pmoney[*pround] += 50;
+			break;
+		case 7:
+			label_showEvent->Text += "ä¸€éš»ç»ç’ƒç¸èº²åœ¨ä½ çš„é´å­è£¡ï¼Œç©¿é‹æ™‚å·®é»æŠŠä»–è¸©æ‰äº†ï¼Œä½ æŠ–äº†æŠ–é´å­ï¼Œç»ç’ƒç¸é€£åŒä»–èº«ä¸Šçš„450å…ƒä¸€èµ·æ‰ä¸‹ä¾†ã€‚";
+			pmoney[*pround] += 450;
+			break;
+		case 8:
+			label_showEvent->Text += "é€²åˆ°ä¸€å€‹ç¥ç¥•çš„æ´ç©´æ¢éšªï¼Œçªç„¶å†’å‡ºäº†å¸è¡€é¬¼å¥³ç‹ï¼Œä½ åš‡å¾—è½‰èº«é€ƒè·‘ï¼Œæ…Œäº‚ä¸­å£è¢‹çš„é‡‘å¹£æ‰äº†å‡ºä¾†ï¼Œæå¤±100å…ƒã€‚";
+			pmoney[*pround] -= 100;
+			break;
+		case 9:
+			label_showEvent->Text += "åˆ°é»‘å¸‚è®Šè³£ä½ å·ä¾†çš„çŸ®äººéµéšï¼Œè³ºäº†500å…ƒï¼Œè‰¯å¿ƒå¥½åƒæœ‰é»ä¸å®‰...";
+			pmoney[*pround] += 500;
+			break;
+		default:
+			label_showEvent->Text += "å—¯...ä¼¼ä¹æœ‰é»éŒ¯èª¤";
+		}
+		if (*pround == 0)	//ä¸€è™Ÿç©å®¶
+			show_player_label(label_player1, 0);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+		else if (*pround == 1)	//äºŒè™Ÿç©å®¶
+			show_player_label(label_player2, 1);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+		else if (*pround == 2) 	//ä¸‰è™Ÿç©å®¶
+			show_player_label(label_player3, 2);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+		else if (*pround == 3)	//å››è™Ÿç©å®¶
+			show_player_label(label_player4, 3);	//æ›´æ–°è§’è‰²ç‹€æ…‹æ¬„
+	}
+	//å­˜æª”
+	private: System::Void å­˜æª”ToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		DateTime localDate = DateTime::Now;		//å–å¾—ç¾åœ¨æ™‚é–“
+		StreamWriter^ sf = gcnew StreamWriter("Save.txt", true);
+		sf->WriteLine();
+		sf->WriteLine("Save File:");
+		sf->WriteLine("Player's name:" + playerName[0]);
+		sf->WriteLine("Number of player:" + people);
+		sf->WriteLine("Players' money:" + pmoney[0] + "/" + pmoney[1] + "/" + pmoney[2] + "/" + pmoney[3]);
+		sf->WriteLine("Players' location:" + pposition[0] + "/" + pposition[1] + "/" + pposition[2] + "/" + pposition[3]);
+		sf->WriteLine("Players' NoTax card:" + pnoTax[0] + "/" + pnoTax[1] + "/" + pnoTax[2] + "/" + pnoTax[3]);
+		sf->WriteLine("Players are alive or not:" + alive[0] + "/" + alive[1] + "/" + alive[2] + "/" + alive[3]);
+		sf->Write("Cost of each place from 00 to 29:");
+		for (int^ pi = 0; *pi < 30; (*pi)++)
+			sf->Write(plocaMon[*pi] + "/");
+		sf->WriteLine();
+		sf->Write("Number of houses on each place from 00 to 29:");
+		for (int^ pi = 0; *pi < 30; (*pi)++)
+			sf->Write(phouses[*pi] + "/");
+		sf->WriteLine();
+		sf->Write("Owner of each place from 00 to 29:");
+		for (int^ pi = 0; *pi < 30; (*pi)++)
+			sf->Write(owner[*pi] + "/");
+		sf->WriteLine();
+		sf->WriteLine("Save time-" + localDate);
+		sf->Close();
+		MessageBox::Show("æˆåŠŸå„²å­˜ç¾åœ¨çš„éŠæˆ²æ•¸æ“šï¼Œå­˜æª”æ™‚é–“ç‚º" + localDate + "ã€‚","å­˜æª”æˆåŠŸ");
 	}
 };
 }
