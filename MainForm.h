@@ -1,10 +1,9 @@
 #pragma once
-//icon made by https://www.freepik.com/
-//www.flaticon.com/packs/fantastic-characters-3
 #include <time.h>
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include "AdminForm.h"
 
 namespace wp_hw06_4105056005 {
 
@@ -74,6 +73,7 @@ namespace wp_hw06_4105056005 {
 	private: System::Windows::Forms::Label^  label_p4_dead;
 	private: System::Windows::Forms::ToolStripMenuItem^  存檔ToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  說明與圖源ToolStripMenuItem;
+	private: System::Windows::Forms::PictureBox^  picture_trophy;
 
 
 	public:
@@ -188,6 +188,7 @@ namespace wp_hw06_4105056005 {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->調整模式ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->存檔ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->說明與圖源ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->pictureBox_gif = (gcnew System::Windows::Forms::PictureBox());
 			this->button_dice = (gcnew System::Windows::Forms::Button());
 			this->label_showDice = (gcnew System::Windows::Forms::Label());
@@ -212,7 +213,7 @@ namespace wp_hw06_4105056005 {
 			this->label_p2_dead = (gcnew System::Windows::Forms::Label());
 			this->label_p3_dead = (gcnew System::Windows::Forms::Label());
 			this->label_p4_dead = (gcnew System::Windows::Forms::Label());
-			this->說明與圖源ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->picture_trophy = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -228,6 +229,7 @@ namespace wp_hw06_4105056005 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_trophy))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label_start
@@ -766,7 +768,8 @@ namespace wp_hw06_4105056005 {
 			// 
 			this->調整模式ToolStripMenuItem->Name = L"調整模式ToolStripMenuItem";
 			this->調整模式ToolStripMenuItem->Size = System::Drawing::Size(121, 34);
-			this->調整模式ToolStripMenuItem->Text = L"作弊模式";
+			this->調整模式ToolStripMenuItem->Text = L"管理模式";
+			this->調整模式ToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::調整模式ToolStripMenuItem_Click);
 			// 
 			// 存檔ToolStripMenuItem
 			// 
@@ -774,6 +777,13 @@ namespace wp_hw06_4105056005 {
 			this->存檔ToolStripMenuItem->Size = System::Drawing::Size(73, 34);
 			this->存檔ToolStripMenuItem->Text = L"存檔";
 			this->存檔ToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::存檔ToolStripMenuItem_Click);
+			// 
+			// 說明與圖源ToolStripMenuItem
+			// 
+			this->說明與圖源ToolStripMenuItem->Name = L"說明與圖源ToolStripMenuItem";
+			this->說明與圖源ToolStripMenuItem->Size = System::Drawing::Size(145, 34);
+			this->說明與圖源ToolStripMenuItem->Text = L"說明與圖源";
+			this->說明與圖源ToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::說明與圖源ToolStripMenuItem_Click);
 			// 
 			// pictureBox_gif
 			// 
@@ -929,7 +939,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			// picture_avatar2
 			// 
-			this->picture_avatar2->BackColor = System::Drawing::Color::RoyalBlue;
+			this->picture_avatar2->BackColor = System::Drawing::Color::Blue;
 			this->picture_avatar2->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->picture_avatar2->Location = System::Drawing::Point(45, 99);
 			this->picture_avatar2->Name = L"picture_avatar2";
@@ -939,7 +949,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			// picture_avatar3
 			// 
-			this->picture_avatar3->BackColor = System::Drawing::Color::MediumSeaGreen;
+			this->picture_avatar3->BackColor = System::Drawing::Color::Green;
 			this->picture_avatar3->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->picture_avatar3->Location = System::Drawing::Point(45, 139);
 			this->picture_avatar3->Name = L"picture_avatar3";
@@ -949,7 +959,7 @@ namespace wp_hw06_4105056005 {
 			// 
 			// picture_avatar4
 			// 
-			this->picture_avatar4->BackColor = System::Drawing::Color::Gold;
+			this->picture_avatar4->BackColor = System::Drawing::Color::Yellow;
 			this->picture_avatar4->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->picture_avatar4->Location = System::Drawing::Point(45, 179);
 			this->picture_avatar4->Name = L"picture_avatar4";
@@ -1098,11 +1108,15 @@ namespace wp_hw06_4105056005 {
 			this->label_p4_dead->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label_p4_dead->Visible = false;
 			// 
-			// 說明與圖源ToolStripMenuItem
+			// picture_trophy
 			// 
-			this->說明與圖源ToolStripMenuItem->Name = L"說明與圖源ToolStripMenuItem";
-			this->說明與圖源ToolStripMenuItem->Size = System::Drawing::Size(145, 34);
-			this->說明與圖源ToolStripMenuItem->Text = L"說明與圖源";
+			this->picture_trophy->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picture_trophy.Image")));
+			this->picture_trophy->Location = System::Drawing::Point(1006, 731);
+			this->picture_trophy->Name = L"picture_trophy";
+			this->picture_trophy->Size = System::Drawing::Size(433, 400);
+			this->picture_trophy->TabIndex = 68;
+			this->picture_trophy->TabStop = false;
+			this->picture_trophy->Visible = false;
 			// 
 			// MainForm
 			// 
@@ -1113,6 +1127,7 @@ namespace wp_hw06_4105056005 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(2479, 1417);
+			this->Controls->Add(this->picture_trophy);
 			this->Controls->Add(this->label_p4_dead);
 			this->Controls->Add(this->label_p3_dead);
 			this->Controls->Add(this->label_p2_dead);
@@ -1186,6 +1201,7 @@ namespace wp_hw06_4105056005 {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->MinimumSize = System::Drawing::Size(2505, 1488);
 			this->Name = L"MainForm";
 			this->Text = L"Lord of the monopoly";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -1204,6 +1220,7 @@ namespace wp_hw06_4105056005 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picture_trophy))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -1223,18 +1240,47 @@ namespace wp_hw06_4105056005 {
 			picture_avatar3->Visible = false;
 		}
 	}
-	//遊戲開始前的初始化
-	public: System::Void initialize() {
+	//讀檔或新遊戲共同的初始化
+	public: System::Void initialShare() {
 		label_p1_name->Text = playerName[0];
+		picture_avatar1->Location = switch_map(pposition[0])->Location;	//移動角色在地圖上的小方塊
 
 		playerName[1] = "Wolverine";
-		pmoney[1] = pmoney[0];
 		playerName[2] = "Gandalf";
-		pmoney[2] = pmoney[0];
 		playerName[3] = "Zombie boi";
+		picture_avatar2->Location = Point(switch_map(pposition[1])->Location.X, switch_map(pposition[1])->Location.Y + 20);//移動角色在地圖上的小方塊
+		picture_avatar3->Location = Point(switch_map(pposition[2])->Location.X, switch_map(pposition[2])->Location.Y + 40);	//移動角色在地圖上的小方塊
+		picture_avatar4->Location = Point(switch_map(pposition[3])->Location.X, switch_map(pposition[3])->Location.Y + 20);	//移動角色在地圖上的小方塊
+
+		plocations = gcnew array<String^>(30) {
+			"Start", "1.Hobbiton", "2.EchoIsles", "3.Citadel", "4.Midgar", "5.Gotham", "6.CHANCE", "7.Hideout",
+				"8.SouthPark", "9.Waterdeep", "10.TAX", "11.Silent Hill", "12.Racoon City", "13.Los Santos", "14.District X", "15.Snowdin", "16.Grillby's", "17.COMMUNITY", "18.Skyrim",
+				"19.Helheim", "20.Outland", "21.Ravenholm", "22.Asgard", "23.Detroit", "24.Alfheim", "25.TAX", "26.Highway 17", "27.Gravity Falls", "28.Black Beach", "29.Sea of light"
+		};
+
+		show_player_label(label_player1, 0);
+		show_player_label(label_player2, 1);
+		show_player_label(label_player3, 2);
+		show_player_label(label_player4, 3);
+
+		show_map_label(label1, 1);	show_map_label(label2, 2);
+		show_map_label(label3, 3);	show_map_label(label4, 4);	show_map_label(label5, 5);
+		show_map_label(label6, 6);	show_map_label(label7, 7);	show_map_label(label8, 8);
+		show_map_label(label9, 9);	show_map_label(label10, 10);	show_map_label(label11, 11);
+		show_map_label(label12, 12);	show_map_label(label13, 13);	show_map_label(label14, 14);
+		show_map_label(label15, 15);	show_map_label(label16, 16);	show_map_label(label17, 17);
+		show_map_label(label18, 18);	show_map_label(label19, 19);	show_map_label(label20, 20);
+		show_map_label(label21, 21);	show_map_label(label22, 22);	show_map_label(label23, 23);
+		show_map_label(label24, 24);	show_map_label(label25, 25);	show_map_label(label26, 26);
+		show_map_label(label27, 27);	show_map_label(label28, 28);	show_map_label(label29, 29);
+	}
+	//遊戲開始前的初始化
+	public: System::Void initialize() {
+		pmoney[1] = pmoney[0];
+		pmoney[2] = pmoney[0];
 		pmoney[3] = pmoney[0];
 
-		plocaMon[0] = 0;	plocaMon[1] = 90;	plocaMon[2] = 60;
+		plocaMon[0] = 0;	plocaMon[1] = 90;	plocaMon[2] = 80;
 		plocaMon[3] = 120;	plocaMon[4] = 80;	plocaMon[5] = 100;
 		plocaMon[6] = 0;	plocaMon[7] = 100;	plocaMon[8] = 150;
 		plocaMon[9] = 160;	plocaMon[10] = 200;	plocaMon[11] = 190;
@@ -1243,7 +1289,7 @@ namespace wp_hw06_4105056005 {
 		plocaMon[18] = 220;	plocaMon[19] = 250;	plocaMon[20] = 160;
 		plocaMon[21] = 200;	plocaMon[22] = 180;	plocaMon[23] = 230;
 		plocaMon[24] = 250;	plocaMon[25] = 200;	plocaMon[26] = 300;
-		plocaMon[27] = 320;	plocaMon[28] = 160;	plocaMon[29] = 320;
+		plocaMon[27] = 320;	plocaMon[28] = 160;	plocaMon[29] = 360;
 
 		int^ pi = gcnew int;
 		for (*pi = 0; *pi < 30; (*pi)++) {
@@ -1268,27 +1314,7 @@ namespace wp_hw06_4105056005 {
 
 		*pround = 0;
 
-		plocations = gcnew array<String^>(30) {
-			"Start", "1.Hobbiton", "2.EchoIsles", "3.Citadel", "4.Midgar", "5.Gotham", "6.CHANCE", "7.Hideout",
-				"8.SouthPark", "9.Waterdeep", "10.TAX", "11.Silent Hill", "12.Racoon City", "13.Los Santos", "14.District X", "15.Snowdin", "16.Grillby's", "17.COMMUNITY", "18.Skyrim",
-				"19.Helheim", "20.Outland", "21.Ravenholm", "22.Asgard", "23.Detroit", "24.Alfheim", "25.TAX", "26.Highway 17", "27.Gravity Falls", "28.Black Beach", "29.Sea of light"
-		};
-
-		show_player_label(label_player1, 0);
-		show_player_label(label_player2, 1);
-		show_player_label(label_player3, 2);
-		show_player_label(label_player4, 3);
-
-		show_map_label(label1, 1);	show_map_label(label2, 2);
-		show_map_label(label3, 3);	show_map_label(label4, 4);	show_map_label(label5, 5);
-		show_map_label(label6, 6);	show_map_label(label7, 7);	show_map_label(label8, 8);
-		show_map_label(label9, 9);	show_map_label(label10, 10);	show_map_label(label11, 11);
-		show_map_label(label12, 12);	show_map_label(label13, 13);	show_map_label(label14, 14);
-		show_map_label(label15, 15);	show_map_label(label16, 16);	show_map_label(label17, 17);
-		show_map_label(label18, 18);	show_map_label(label19, 19);	show_map_label(label20, 20);
-		show_map_label(label21, 21);	show_map_label(label22, 22);	show_map_label(label23, 23);
-		show_map_label(label24, 24);	show_map_label(label25, 25);	show_map_label(label26, 26);
-		show_map_label(label27, 27);	show_map_label(label28, 28);	show_map_label(label29, 29);
+		initialShare();
 
 		//開始遊戲
 		button_dice->Visible = true;	//真人玩家的回合，骰子按鈕會出現
@@ -1301,26 +1327,32 @@ namespace wp_hw06_4105056005 {
 		label->Text += "金錢數: " + pmoney[n] + "\n";
 		label->Text += "目前位置: " + plocations[pposition[n]] + "\n";
 		label->Text += "逃稅卡: " + pnoTax[n] + "張\n";
-		//檢查破產
-		if (pmoney[*pround] <= 0) {
-			if (*pround == 1)
-				label_p2_dead->Visible = true;
-			else if(*pround == 2)
-				label_p3_dead->Visible = true;
-			else if (*pround == 3)
-				label_p4_dead->Visible = true;
-			else if (*pround == 0) {	//一號玩家破產
-				button_next->Visible = false;
-				label_showEvent->Visible = true;
-				label_showEvent->Text = "喔...你破產了:(\n\n關掉此頁面再重新來一局吧~";
-			}
-			alive[*pround] = 1;
+		//檢查二到四號玩家破產
+		if (pmoney[1] <= 0) {
+			label_p2_dead->Visible = true;
+			alive[1] = 1;
+		}
+		if (pmoney[2] <= 0) {
+			label_p3_dead->Visible = true;
+			alive[2] = 1;
+		}
+		if (pmoney[3] <= 0) {
+			label_p4_dead->Visible = true;
+			alive[3] = 1;
 		}
 		//電腦玩家都死亡了
 		if ((people == 2 && alive[1] == 1) || (alive[2] == 1 && alive[1] == 1 && people == 3) || (alive[3] == 1 && alive[2] == 1 && alive[1] == 1)) {
 			label_showEvent->Visible = true;
 			button_continue->Visible = false;
-			label_showEvent->Text = "恭喜你贏得勝利!!!\n\n關掉此頁面再重新來一局吧:)";
+			label_showEvent->Text = "恭喜你贏得勝利!!!\n\n送你一個獎盃~: )";
+			picture_trophy->Visible = true;
+		}
+		if (pmoney[0] <= 0) {	//一號玩家破產
+			button_next->Visible = false;
+			label_showEvent->Visible = true;
+			label_showEvent->Text = "啊...你破產了:(\n\n別氣餒，關掉此頁面再重新來一局吧~";
+			button_dice->Visible = false;
+			alive[0] = 1;
 		}
 	}
 	//show出地圖格子
@@ -1365,7 +1397,7 @@ namespace wp_hw06_4105056005 {
 		show_player_label(label_player1, 0);	//玩家位置變更，更新角色狀態欄
 		picture_avatar1->Location = switch_map(pposition[*pround])->Location;	//移動角色在地圖上的小方塊
 		if (pposition[*pround] == 6) {
-			label_showEvent->Text += "-機會-\n危機就是轉機。親愛的玩家，從下面五張卡牌點選其中一張。\n";
+			label_showEvent->Text += "-機會-\n危機就是轉機，親愛的玩家，從下面五張卡牌點選其中一張。\n";
 			//chance
 			pictureBox5->Visible = true;
 			pictureBox6->Visible = true;
@@ -1375,7 +1407,7 @@ namespace wp_hw06_4105056005 {
 		}
 		//到達命運方塊
 		else if (pposition[*pround] == 17) {
-			label_showEvent->Text += "-命運-\n在命運女神的殿堂之下，她賜予你一張命運卡牌，點選下列其中一張。\n";
+			label_showEvent->Text += "-命運-\n進入命運女神的殿堂，她賜予你一張命運卡牌，點選下列其中一張。\n";
 			//community
 			pictureBox5->Visible = true;
 			pictureBox6->Visible = true;
@@ -1387,7 +1419,7 @@ namespace wp_hw06_4105056005 {
 		else if (pposition[*pround] == 10 || pposition[*pround] == 25) {
 			label_showEvent->Text += "真倒楣，是收稅時間!!! 請上繳200塊。\n";
 			if (pnoTax[*pround] > 0) {
-				label_showEvent->Text += "使用逃稅密籍!!!我就是死不繳稅三十六式!\n";
+				label_showEvent->Text += "使用逃稅密籍!!!我就是死不繳稅!!\n";
 				pnoTax[*pround]--;
 			}
 			else
@@ -1418,7 +1450,8 @@ namespace wp_hw06_4105056005 {
 						pmoney[*pround] += (int)plocaMon[pposition[*pround]] / 2 * 1.5;
 						label_showEvent->Text += "請問要升級房子嗎?需要花費" + plocaMon[pposition[*pround]] + "元。\n";
 					}
-					button_buy->Visible = true;
+					if(plocaMon[pposition[*pround]] <= pmoney[0])
+						button_buy->Visible = true;
 					button_notBuy->Visible = true;
 				}
 			}
@@ -1434,7 +1467,8 @@ namespace wp_hw06_4105056005 {
 				}
 				else {
 					label_showEvent->Text += "擁有這塊地的玩家已經死亡了，這邊是一片充滿怪物的荒地。\n" + (int)plocaMon[pposition[*pround]] + "元可以接管他的土地。\n";
-					button_buy->Visible = true;
+					if (plocaMon[pposition[*pround]] <= pmoney[0])
+						button_buy->Visible = true;
 					button_notBuy->Visible = true;
 				}
 			}
@@ -1499,30 +1533,30 @@ namespace wp_hw06_4105056005 {
 		}
 		if (*pround == 1) {	//二號玩家
 			show_player_label(label_player2, 1);	//玩家位置變更，更新角色狀態欄
-			picture_avatar2->Location = switch_map(pposition[*pround])->Location;	//移動角色在地圖上的小方塊
+			picture_avatar2->Location = Point(switch_map(pposition[*pround])->Location.X, switch_map(pposition[*pround])->Location.Y + 20);
 		}
 		else if (*pround == 2) {	//三號玩家
 			show_player_label(label_player3, 2);	//玩家位置變更，更新角色狀態欄
-			picture_avatar3->Location = switch_map(pposition[*pround])->Location;	//移動角色在地圖上的小方塊
+			picture_avatar3->Location = Point(switch_map(pposition[*pround])->Location.X, switch_map(pposition[*pround])->Location.Y + 40);
 		}
 		else if (*pround == 3) {	//四號玩家
 			show_player_label(label_player4, 3);	//玩家位置變更，更新角色狀態欄
-			picture_avatar4->Location= switch_map(pposition[*pround])->Location;	//移動角色在地圖上的小方塊
+			picture_avatar4->Location = Point(switch_map(pposition[*pround])->Location.X, switch_map(pposition[*pround])->Location.Y + 60);
 		}
 		if (pposition[*pround] == 6) {
-			label_showEvent->Text += "危機就是轉機。 親愛的玩家，抽取一張機會牌。\n";
+			label_showEvent->Text += "危機就是轉機。抽取一張機會牌。\n";
 			chance();
 		}
 		//到達命運方塊
 		else if (pposition[*pround] == 17) {
-			label_showEvent->Text += "你到達了命運女神的殿堂，她賜予你一張命運卡牌。\n";
+			label_showEvent->Text += "到達命運女神的殿堂，她賜予你一張命運牌。\n";
 			chance();
 		}
 		//到達抽稅方塊
 		else if (pposition[*pround] == 10 || pposition[*pround] == 25) {
 			label_showEvent->Text += "真倒楣，是收稅時間!!! 請上繳200塊。\n";
 			if (pnoTax[*pround] > 0) {
-				label_showEvent->Text += "使用逃稅密籍!!!我就是死不繳稅三十六式!\n";
+				label_showEvent->Text += "使用逃稅密籍!!!我就是死不繳稅!\n";
 				pnoTax[*pround]--;
 			}
 			else
@@ -1548,7 +1582,7 @@ namespace wp_hw06_4105056005 {
 						label_showEvent->Text += "在此地已經有" + phouses[pposition[*pround]] + "級房子。收取租金" + (int)plocaMon[pposition[*pround]] / 2 * 1.5 + "元。\n";
 						pmoney[*pround] += (int)plocaMon[pposition[*pround]] / 2 * 1.5;
 					}
-					if (pmoney[*pround] > plocaMon[pposition[*pround]] + 150) {
+					if (pmoney[*pround] > plocaMon[pposition[*pround]] + 100) {
 						pmoney[*pround] -= plocaMon[pposition[*pround]];
 						phouses[pposition[*pround]] += 1;
 						if (phouses[pposition[*pround]] < 5)
@@ -1578,7 +1612,7 @@ namespace wp_hw06_4105056005 {
 				}
 				else {
 					label_showEvent->Text += "擁有這塊地的玩家已死亡，" + (int)plocaMon[pposition[*pround]] + "元可以接管他的土地。\n";
-					if (pmoney[*pround] > plocaMon[pposition[*pround]] + 150) {
+					if (pmoney[*pround] > plocaMon[pposition[*pround]] + 100) {
 						pmoney[*pround] -= plocaMon[pposition[*pround]];
 						phouses[pposition[*pround]] += 1;
 						if (phouses[pposition[*pround]] < 5)
@@ -1621,7 +1655,7 @@ namespace wp_hw06_4105056005 {
 		autoGame();
 	}
 	//找到對應map的label name
-	private: Label^ switch_map(int n) {
+	public: Label^ switch_map(int n) {
 		switch (n)
 		{
 		case 0:	return label_start;
@@ -1691,11 +1725,11 @@ namespace wp_hw06_4105056005 {
 			pmoney[*pround] -= 250;
 			break;
 		case 1:
-			label_showEvent->Text += "被捲進半獸人戰爭，重傷住院，花700元治療費。";
+			label_showEvent->Text += "被捲進半獸人與矮人戰爭，身受重傷，花700元治療費。";
 			pmoney[*pround] -= 700;
 			break;
 		case 2:
-			label_showEvent->Text += "得到逃稅大師的親自指點，獲得一本逃稅密籍。(可以少繳一次稅)";
+			label_showEvent->Text += "得到盜賊大師親自指點，獲得一本逃稅密籍。(可以少繳一次稅)";
 			pnoTax[*pround] += 1;
 			break;
 		case 3:
@@ -1707,24 +1741,24 @@ namespace wp_hw06_4105056005 {
 			pmoney[*pround] += 400;
 			break;
 		case 5:
-			label_showEvent->Text += "你養的龍掙脫鎖鏈，大肆破壞你的殖民地，損失慘重，花費1000元重建。";
-			pmoney[*pround] -= 1000;
+			label_showEvent->Text += "你養的龍掙脫鎖鏈，大肆破壞你的房屋，損失慘重，花費1100元重建。";
+			pmoney[*pround] -= 1100;
 			break;
 		case 6:
 			label_showEvent->Text += "你在廢棄的礦坑裡找到一箱金幣，發財啦發財啦!!喔，等等，裡面只有50元...";
 			pmoney[*pround] += 50;
 			break;
 		case 7:
-			label_showEvent->Text += "一隻玻璃獸躲在你的靴子裡，穿鞋時差點把他踩扁了，你抖了抖靴子，玻璃獸連同他身上的450元一起掉下來。";
+			label_showEvent->Text += "一隻玻璃獸躲在你的靴子裡，穿鞋時差點把他踩扁了。你抖了抖靴子，玻璃獸連同450元一起掉出來。";
 			pmoney[*pround] += 450;
 			break;
 		case 8:
-			label_showEvent->Text += "進到一個神祕的洞穴探險，突然冒出了吸血鬼女王，你嚇得轉身逃跑，慌亂中口袋的金幣掉了出來，損失100元。";
-			pmoney[*pround] -= 100;
+			label_showEvent->Text += "進到神祕的洞穴探險，魔王從黑暗中現身，你嚇得轉身逃跑，慌亂中口袋的金幣掉了出來，損失300元。";
+			pmoney[*pround] -= 300;
 			break;
 		case 9:
-			label_showEvent->Text += "到黑市變賣你偷來的矮人鐵鎚，賺了500元，良心好像有點不安...";
-			pmoney[*pround] += 500;
+			label_showEvent->Text += "盲眼的旅人塞給你一袋金幣，獲得800元。「願原力與你同在」他對你說道，隨後揚長而去。";
+			pmoney[*pround] += 800;
 			break;
 		default:
 			label_showEvent->Text += "嗯...似乎有點錯誤";
@@ -1765,6 +1799,49 @@ namespace wp_hw06_4105056005 {
 		sf->WriteLine("Save time-" + localDate);
 		sf->Close();
 		MessageBox::Show("成功儲存現在的遊戲數據，存檔時間為" + localDate + "。","存檔成功");
+	}
+	//說明menu strip
+	private: System::Void 說明與圖源ToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show("-使用說明-\n歡迎來到奇幻大富翁。在起始畫面可以選擇新遊戲或是讀檔，" +
+		"進入遊戲後，點選中間版面出現的按鈕，做出擲骰子、購買房子、抽取卡片等動作。除了滑鼠點選，也可以用Tab和Enter操作。"+
+		"若你破產或電腦玩家都破產，則遊戲結束。在上方menu可以選擇管理模式(作弊mode)、存檔(儲存現在遊戲進度)。\n"+
+		"*****適合電腦解析度為2560x1600，解析度不同可能會讓遊戲視窗跑版QAQ*****"+
+		"\n\n-圖源-\n機會命運卡牌繪師: Lubanko Tarot\nGIF繪師: kirokaze\n" +
+		"角色頭像: http:// www.freepik.com\n背景繪師: A.Rocha", "遊戲說明與圖片來源");
+	}
+	//cheat code作弊模式
+	private: System::Void 調整模式ToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		AdminForm^ adf = gcnew AdminForm;
+		adf->textBox_money->Text = pmoney[0].ToString();
+		adf->textBox_p2money->Text = pmoney[1].ToString();
+		if (people > 2) {
+			adf->textBox_p3money->Visible = true;
+			adf->label_p3money->Visible = true;
+			adf->textBox_p3money->Text = pmoney[2].ToString();
+		}
+		if (people == 4) {
+			adf->textBox_p4money->Visible = true;
+			adf->label_p4money->Visible = true;
+			adf->textBox_p4money->Text = pmoney[3].ToString();
+		}
+		adf->ShowDialog();
+		int testInteger = 0;
+		if (Int32::TryParse(adf->textBox_money->Text, testInteger)) //金錢數量防呆，不會是字母或負數
+			pmoney[0] = testInteger;		//獲得改變的金錢數量
+		if (Int32::TryParse(adf->textBox_p2money->Text, testInteger))   //金錢數量防呆，不會是字母或負數
+			pmoney[1] = testInteger;		//獲得改變的金錢數量
+		show_player_label(label_player1, 0);	//更新一號玩家狀態欄
+		show_player_label(label_player2, 1);	//更新二號玩家狀態欄
+		if (people > 2) {
+			if (Int32::TryParse(adf->textBox_p3money->Text, testInteger))  //金錢數量防呆，不會是字母或負數
+				pmoney[2] = testInteger;		//獲得改變的金錢數量
+			show_player_label(label_player3, 2);	//更新三號玩家狀態欄
+		}
+		if (people == 4) {
+			if (Int32::TryParse(adf->textBox_p4money->Text, testInteger))  //金錢數量防呆，不會是字母或負數
+				pmoney[3] = testInteger;		//獲得改變的金錢數量
+			show_player_label(label_player4, 3);	//更新四號玩家狀態欄
+		}
 	}
 };
 }
