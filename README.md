@@ -12,7 +12,7 @@ Lord of the monopoly!!!視窗化的大富翁遊戲
 
 
 *遊戲畫面
-<img src="https://github.com/RavenCheng1120/window-monopoly/blob/master/Demo%20image/gamePage.JPG" width="50%" height="50%">
+<img src="https://github.com/RavenCheng1120/window-monopoly/blob/master/Demo%20image/gamePage.JPG" width="100%" height="100%">
 
 
 *調整模式
