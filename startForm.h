@@ -124,7 +124,7 @@ namespace wp_hw06_4105056005 {
 			this->trackBar1->Minimum = 2;
 			this->trackBar1->Name = L"trackBar1";
 			this->trackBar1->Size = System::Drawing::Size(312, 90);
-			this->trackBar1->TabIndex = 1;
+			this->trackBar1->TabIndex = 3;
 			this->trackBar1->TickStyle = System::Windows::Forms::TickStyle::Both;
 			this->trackBar1->Value = 2;
 			this->trackBar1->Visible = false;
@@ -141,7 +141,7 @@ namespace wp_hw06_4105056005 {
 			this->button2->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(222, 110);
-			this->button2->TabIndex = 2;
+			this->button2->TabIndex = 1;
 			this->button2->Text = L"繼續遊戲";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &startForm::button2_Click);
@@ -225,7 +225,7 @@ namespace wp_hw06_4105056005 {
 			this->textBox_name->MaxLength = 11;
 			this->textBox_name->Name = L"textBox_name";
 			this->textBox_name->Size = System::Drawing::Size(235, 46);
-			this->textBox_name->TabIndex = 8;
+			this->textBox_name->TabIndex = 2;
 			this->textBox_name->Text = L"Frodo";
 			this->textBox_name->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			this->textBox_name->Visible = false;
@@ -253,7 +253,7 @@ namespace wp_hw06_4105056005 {
 			this->textBox_money->MaxLength = 10;
 			this->textBox_money->Name = L"textBox_money";
 			this->textBox_money->Size = System::Drawing::Size(312, 46);
-			this->textBox_money->TabIndex = 10;
+			this->textBox_money->TabIndex = 4;
 			this->textBox_money->Text = L"1500";
 			this->textBox_money->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			this->textBox_money->Visible = false;
@@ -277,14 +277,15 @@ namespace wp_hw06_4105056005 {
 			// 
 			// continue_background
 			// 
-			this->continue_background->BackColor = System::Drawing::Color::DarkSeaGreen;
-			this->continue_background->Font = (gcnew System::Drawing::Font(L"微軟正黑體", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->continue_background->BackColor = System::Drawing::Color::DarkSlateGray;
+			this->continue_background->Font = (gcnew System::Drawing::Font(L"微軟正黑體", 13.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
-			this->continue_background->Location = System::Drawing::Point(70, 84);
+			this->continue_background->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->continue_background->Location = System::Drawing::Point(73, 75);
 			this->continue_background->Name = L"continue_background";
-			this->continue_background->Size = System::Drawing::Size(723, 705);
+			this->continue_background->Size = System::Drawing::Size(723, 714);
 			this->continue_background->TabIndex = 12;
-			this->continue_background->Text = L"\r\n選擇紀錄檔:";
+			this->continue_background->Text = L"\r\nSave.txt\r\n選取紀錄檔:";
 			this->continue_background->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			this->continue_background->Visible = false;
 			// 
@@ -295,20 +296,22 @@ namespace wp_hw06_4105056005 {
 				static_cast<System::Byte>(136)));
 			this->listBox1->FormattingEnabled = true;
 			this->listBox1->ItemHeight = 36;
-			this->listBox1->Location = System::Drawing::Point(168, 246);
+			this->listBox1->Location = System::Drawing::Point(171, 288);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(537, 326);
 			this->listBox1->TabIndex = 13;
 			this->listBox1->Visible = false;
+			this->listBox1->Click += gcnew System::EventHandler(this, &startForm::listBox1_Click);
 			// 
 			// button_load
 			// 
 			this->button_load->BackColor = System::Drawing::Color::SeaGreen;
+			this->button_load->Enabled = false;
 			this->button_load->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button_load->Font = (gcnew System::Drawing::Font(L"微軟正黑體", 10.875F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(136)));
 			this->button_load->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button_load->Location = System::Drawing::Point(326, 646);
+			this->button_load->Location = System::Drawing::Point(326, 662);
 			this->button_load->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->button_load->Name = L"button_load";
 			this->button_load->Size = System::Drawing::Size(205, 91);
@@ -316,6 +319,7 @@ namespace wp_hw06_4105056005 {
 			this->button_load->Text = L"確定";
 			this->button_load->UseVisualStyleBackColor = false;
 			this->button_load->Visible = false;
+			this->button_load->Click += gcnew System::EventHandler(this, &startForm::button_load_Click);
 			// 
 			// startForm
 			// 
@@ -341,6 +345,7 @@ namespace wp_hw06_4105056005 {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label_people);
 			this->Controls->Add(this->pictureBox1);
+			this->DoubleBuffered = true;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Name = L"startForm";
@@ -431,6 +436,7 @@ namespace wp_hw06_4105056005 {
 		button_load->Visible = false;
 		listBox1->Visible = false;
 		continue_background->Visible = false;
+		button_load->Enabled = false;
 		listBox1->Items->Clear();
 	}
 	//讀檔按鈕
@@ -445,7 +451,6 @@ namespace wp_hw06_4105056005 {
 		
 		int^ count = gcnew int;		//幾個紀錄
 		array<String^>^ words;	//分割句子
-		int^ lines = gcnew int; //一個紀錄有十行文字，一行空白
 		String^ str;
 
 		StreamReader^ sl = File::OpenText("Save.txt");
@@ -455,16 +460,110 @@ namespace wp_hw06_4105056005 {
 				(*count)++;
 			if (str->StartsWith("Save time-")) {
 				words = str->Split('-');
-				listBox1->Items->Add(*count + "號存檔: " + words[1]);
+				listBox1->Items->Add("No." + *count + "存檔: " + words[1]);
 			}
 		}
 		if (*count == 0) {
-			continue_background->Text += "\n無任何存檔紀錄";
+			continue_background->Text = "\n選取紀錄檔:\n無任何存檔紀錄";
 			button_load->Visible = false;
 		}
 		sl->Close();
-		
+	}
+	//有選擇檔案，才可以按下確認鈕
+	private: System::Void listBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+		if(listBox1->SelectedIndex != -1)
+			button_load->Enabled = true;
+	}
+	//選擇完檔案
+	private: System::Void button_load_Click(System::Object^  sender, System::EventArgs^  e) {
+		int^ lines = gcnew int; //一個紀錄有十行文字，一行空白
+		int^ count = gcnew int;		//幾個紀錄
+		array<String^>^ words;	//分割句子
+		String^ str;
 
+		//傳參數進去遊戲form
+		MainForm^ mf = gcnew MainForm;
+		StreamReader^sl = File::OpenText("Save.txt");
+		int^ whichFile = gcnew int;	//選擇第幾個紀錄
+		*whichFile = listBox1->SelectedIndex + 1;
+		count = 0;
+		*lines = 1;
+		while ((str = sl->ReadLine()) != nullptr) {
+			if (String::Compare(str, "Save File:") == 0)
+				(*count)++;
+			if (*count == *whichFile) {
+				words = str->Split(':');
+				switch (*lines)
+				{
+				case 2:		//第二行是玩家名字
+					mf->playerName[0] = words[1];
+					break;
+				case 3:		//第三行是玩家數量
+					mf->people = Convert::ToInt32(words[1]);
+					break;
+				case 4:		//第四行是各玩家金錢
+					words = words[1]->Split('/');
+					mf->pmoney[0] = Convert::ToInt32(words[0]);
+					mf->pmoney[1] = Convert::ToInt32(words[1]);
+					mf->pmoney[2] = Convert::ToInt32(words[2]);
+					mf->pmoney[3] = Convert::ToInt32(words[3]);
+					break;
+				case 5:		//第五行是各玩家地點
+					words = words[1]->Split('/');
+					mf->pposition[0] = Convert::ToInt32(words[0]);
+					mf->pposition[1] = Convert::ToInt32(words[1]);
+					mf->pposition[2] = Convert::ToInt32(words[2]);
+					mf->pposition[3] = Convert::ToInt32(words[3]);
+					break;
+				case 6:		//第六行是各玩家特殊卡片數量
+					words = words[1]->Split('/');
+					mf->pnoTax[0] = Convert::ToInt32(words[0]);
+					mf->pnoTax[1] = Convert::ToInt32(words[1]);
+					mf->pnoTax[2] = Convert::ToInt32(words[2]);
+					mf->pnoTax[3] = Convert::ToInt32(words[3]);
+					break;
+				case 7:	//第七行是玩家存活與否
+					words = words[1]->Split('/');
+					mf->alive[0] = Convert::ToInt32(words[0]);
+					mf->alive[1] = Convert::ToInt32(words[1]);
+					mf->alive[2] = Convert::ToInt32(words[2]);
+					mf->alive[3] = Convert::ToInt32(words[3]);
+					break;
+				case 8:		//第八行是地點價格
+					words = words[1]->Split('/');
+					for (int^ i = 0; *i < 30; (*i)++)
+						mf->plocaMon[*i] = Convert::ToInt32(words[*i]);
+					break;
+				case 9:		//第九行是房子數量
+					words = words[1]->Split('/');
+					for (int^ i = 0; *i < 30; (*i)++)
+						mf->phouses[*i] = Convert::ToInt32(words[*i]);
+					break;
+				case 10:	//第十行是房子主人
+					words = words[1]->Split('/');
+					for (int^ i = 0; *i < 30; (*i)++) {
+						mf->owner[*i] = Convert::ToInt32(words[*i]);
+						//變換土地顏色
+						if(mf->owner[*i] == 1)	//一號玩家的土地
+							mf->switch_map(*i)->BackColor = System::Drawing::Color::LightCoral;
+						else if (mf->owner[*i] == 2)	//二號玩家的土地
+							mf->switch_map(*i)->BackColor = System::Drawing::Color::RoyalBlue;
+						else if (mf->owner[*i] == 3)	//三號玩家的土地
+							mf->switch_map(*i)->BackColor = System::Drawing::Color::MediumSeaGreen;
+						else if (mf->owner[*i] == 4)	//四號玩家的土地
+							mf->switch_map(*i)->BackColor = System::Drawing::Color::Gold;
+					}
+					break;
+				default:
+					break;
+				}
+				(*lines)++;
+			}
+		}
+		sl->Close();
+		mf->hidepeople();
+		mf->initialShare();
+		mf->ShowDialog();
 	}
 };
 }
