@@ -1506,7 +1506,7 @@ namespace wp_hw06_4105056005 {
 	//電腦自動遊戲
 	private: System::Void autoGame() {
 		//檢查是否死亡
-		if (alive[*pround] != 0) {
+		while (alive[*pround] != 0) {
 			(*pround)++;
 			if (*pround >= people) {
 				*pround = 0;
